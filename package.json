@@ -14,13 +14,15 @@
     "build": "babel input.js"
   },
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
     "bootstrap": "^3.3.7",
     "express": "^4.15.4",
     "jquery": "^3.2.1",
     "mysql": "^2.14.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "request": "^2.83.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
