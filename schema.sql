@@ -1,24 +1,28 @@
-DROP DATABASE IF EXIST meetup CASCADE,
+// brew install psql
+// brew install psqlcli
+// create user 'tepig' on psql - https://www.postgresql.org/docs/9.1/static/app-createuser.html
+// alter role for 'tepig', this allows this code to create the database - https://www.postgresql.org/docs/9.0/static/sql-alterrole.html
+// run - psql postgres -U tepig < schema.sql
 
-CREATE SCHEMA meetup;
+DROP DATABASE IF EXISTS meetup;
 
-USE meetup;
+CREATE DATABASE meetup;
+\connect meetup;
 
-CREATE TABLE user (
-	id int NOT NULL AUTO_INCREMENT,
-	username varchar(20) NOT NULL,
-	password varchar(25) NOT NULL,
-	PRIMARY KEY (id)
-	FOREIGN KEY (id) REFERENCES user_preferences(user_event);
+CREATE TABLE account (
+	id SERIAL PRIMARY KEY,
+	email TEXT unique NOT NULL,
+	username TEXT unique NOT NULL,
+	password TEXT NOT NULL,
+	created_on TIMESTAMP,
+	last_login TIMESTAMP
 );
 
 CREATE TABLE event_preferences (
-	id int NOT NULL AUTO_INCREMENT,
-	name varchar(25) NOT NULL,
-	sort_name varchar(25) NOT NULL,
-	shortname varchar(15) NOT NULL,
-	PRIMARY KEY (id)
-	FOREIGN KEY (id) REFERENCES user_preferences(preference_id);
+	id SERIAL PRIMARY KEY,
+	name TEXT NOT NULL,
+	sort_name TEXT NOT NULL,
+	shortname TEXT NOT NULL
 );
 
 CREATE TABLE user_preferences (
@@ -27,14 +31,6 @@ CREATE TABLE user_preferences (
 );
 
 CREATE TABLE user_event (
-	user varchar(20) NOT NULL,
-	event varchar(25) NOT NULL
+	account TEXT NOT NULL,
+	event TEXT NOT NULL
 );
-
-INSERT INTO user (username,password) VALUES (Ben,ben10);
-INSERT INTO user (username,password) VALUES (Teen,titan);
-
-INSERT INTO event_preferences (name,sort_name,shortname) VALUE (Car,Car,Auto);
-INSERT INTO event_preferences (name,sort_name,shortname) VALUE (Fighter,Fighter,Aircraft);
-  
-

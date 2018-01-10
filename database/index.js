@@ -1,9 +1,7 @@
-const mysql = require('mysql');
-const mysqlConfig = require('./config.js');
-
-const connection = mysql.createConnection(mysqlConfig);
-
-connection.connect((err) => {
+const pg = require('pg');
+const pgConfig = require('./config.js');
+const pgClient = new pg.Client(pgConfig);
+pgClient.connect((err) => {
   if (err) {
     console.log('There was an error connecting to the database');
   }

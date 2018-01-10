@@ -1,6 +1,7 @@
 module.exports = {
-  host: '',
-  user: '',
-  password: '',
-  database: ''
+  host: 'localhost',
+  user: 'tepig',
+  password: 'tepig',
+  database: 'meetup',
+  port: 5432
 };
