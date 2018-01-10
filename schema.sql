@@ -36,5 +36,5 @@ INSERT INTO user (username,password) VALUES (Teen,titan);
 
 INSERT INTO event_preferences (name,sort_name,shortname) VALUE (Car,Car,Auto);
 INSERT INTO event_preferences (name,sort_name,shortname) VALUE (Fighter,Fighter,Aircraft);
-
+  
 

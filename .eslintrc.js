@@ -7,7 +7,7 @@
 
 module.exports = {
   extends: 'airbnb',
-  "globals": {
-  	"document": true
+  'globals': {
+  	'document': true
   }
 };
