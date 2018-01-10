@@ -1,9 +1,3 @@
-// brew install psql
-// brew install psqlcli
-// create user 'tepig' on psql - https://www.postgresql.org/docs/9.1/static/app-createuser.html
-// alter role for 'tepig', this allows this code to create the database - https://www.postgresql.org/docs/9.0/static/sql-alterrole.html
-// run - psql postgres -U tepig < schema.sql
-
 DROP DATABASE IF EXISTS meetup;
 
 CREATE DATABASE meetup;
