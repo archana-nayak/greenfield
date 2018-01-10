@@ -1,6 +1,6 @@
-DROP DATABASE IF EXIST meetup,
+DROP DATABASE IF EXIST meetup CASCADE,
 
-CREATE DATABASE meetup;
+CREATE SCHEMA meetup;
 
 USE meetup;
 
@@ -30,5 +30,11 @@ CREATE TABLE user_event (
 	user varchar(20) NOT NULL,
 	event varchar(25) NOT NULL
 );
+
+INSERT INTO user (username,password) VALUES (Ben,ben10);
+INSERT INTO user (username,password) VALUES (Teen,titan);
+
+INSERT INTO event_preferences (name,sort_name,shortname) VALUE (Car,Car,Auto);
+INSERT INTO event_preferences (name,sort_name,shortname) VALUE (Fighter,Fighter,Aircraft);
 
 
