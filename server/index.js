@@ -7,7 +7,7 @@ let app = express();
 var database = require('../database/index.js');
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client/dist'));
-app.post('/guests', function(req, res){
+app.post('/meetups', function(req, res){
 
 });
 app.post('/users', function(req, res){
