@@ -29,8 +29,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <h1>LOGO</h1>
-      <h2> OUR APP</h2>
+      <h1>OUR APP</h1>
       <div className="map">
       <h3>Map Goes Here</h3>
       <Map/>

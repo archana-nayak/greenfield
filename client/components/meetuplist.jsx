@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MeetUpList = (props) => (
-  <div className="list">
+  <div>
     <h4> Meetup List Component</h4>
       <ul>Nearby Meetups</ul>
       <li>Hardcoded MeetUp 1</li>
