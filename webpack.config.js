@@ -1,5 +1,5 @@
 var path = require('path');
-var SRC_DIR = path.join(__dirname, '/client/src');
+var SRC_DIR = path.join(__dirname, '/client/components');
 var DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
@@ -19,5 +19,9 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  stats: {
+    colors: true
+  },
+  devtool: 'source-map'
 };
