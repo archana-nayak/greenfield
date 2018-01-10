@@ -1,0 +1,48 @@
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  padding-top: 5px;
+  padding-left: 50px;
+  text-align: center;
+  border: 5px solid blue;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: blue;
+  padding-left: 200px;
+  float: left;
+}
+
+ul {
+  font-size: 25px;
+  padding: 0px;
+  margin: 0px;
+}
+
+li {
+  padding: 5px;
+  margin-top: 5px;
+}
+
+#list {
+  float: right;
+  width: 20%;
+  border: 5px solid green;
+  height: 320px;
+  margin-right: 50px;
+  padding-left: 20px;
+}
+
+#map {
+  text-align: center;
+  margin-top: 100px;
+  margin-left: 50px;
+  padding: 150px;
+  width: 40%;
+  border: 5px solid red;
+}
