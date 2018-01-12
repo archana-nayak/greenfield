@@ -6,8 +6,8 @@
  */
 
 module.exports = {
-  extends: 'airbnb',
-  'globals': {
-  	'document': true
+  extends: "airbnb",
+  "globals": {
+  	"document": true
   }
 };
