@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
-import MeetUpList from '../components/meetuplist.jsx';
-import Map from '../components/map.jsx';
-import Login from '../components/login.jsx';
-import LoginForm from '../components/loginform.jsx';
-import SignUpForm from '../components/signupform.jsx';
+import MeetUpList from '../components/MeetUpList.jsx';
+import Map from '../components/Map.jsx';
+import Login from '../components/Login.jsx';
+import LoginForm from '../components/LoginForm.jsx';
+import SignUpForm from '../components/SignUpForm.jsx';
 import {BrowserRouter, Router, Route, browserHistory, Switch, IndexRoute} from 'react-router-dom';
 const path = require('path');
 class FirstPage extends React.Component {
@@ -53,7 +53,6 @@ class FirstPage extends React.Component {
         this.setState({zipcodeAsker: (<input id="ourZip" placeholder="zipcode" value={this.state.zipcodes} onChange={this.getZipcode}></input>)});
         this.setState({zipcodebutton: (<button id="meetupRequest" onClick={this.getMeetups}>Find MeetUps</button>)});
       };
-
     componentDidMount() {
       var options = {
         enableHighAccuracy: false,
@@ -61,7 +60,6 @@ class FirstPage extends React.Component {
         maximumAge: 0
       };
       this.id = navigator.geolocation.getCurrentPosition(this.weKnowTheLocation, this.errorHandler, options);
-      console.log(this.id)
     }
 
     getZipcode(event) {

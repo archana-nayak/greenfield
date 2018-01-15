@@ -1,6 +1,6 @@
 import React from 'react';
 import MeetupListEntry from './MeetupListEntry.jsx';
-import FirstPage from './firstpage.jsx';
+import FirstPage from './FirstPage.jsx';
 const MeetUpList = function(props)  {
 
   return(

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import LoginForm from './loginform.jsx';
-import FirstPage from './firstpage.jsx';
-import SignUpForm from './signupform.jsx';
-import Login from './login.jsx';
-import Profile from './profile.jsx';
+import {BrowserRouter as Router, Route, Switch, PrivateRoute} from 'react-router-dom';
+import LoginForm from './LoginForm.jsx';
+import FirstPage from './FirstPage.jsx';
+import SignUpForm from './SignUpForm.jsx';
+import Login from './Login.jsx';
+import Profile from './Profile.jsx';
 ReactDOM.render(
       <Router>
       <Switch>

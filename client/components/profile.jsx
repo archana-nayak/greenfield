@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FirstPage from './firstpage.jsx';
-import Index from './index.jsx';
+import FirstPage from './FirstPage.jsx';
+import Index from './Index.jsx';
 import { Link } from 'react-router-dom';
 const Profile = (props) => (
 

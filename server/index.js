@@ -18,17 +18,20 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({secret: 'haha', name: 'session_id', saveUninitialized: true, resave: true}));
 app.use(flash());
+app.use(express.static('public'));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', express.static(__dirname + '/../client/dist'));
 app.use('/login', express.static(__dirname + '/../client/dist'));
 app.use('/signup', express.static(__dirname + '/../client/dist'));
-app.use(function (req, res, next) {
-  console.log('im checking something')
-  res.locals.login = req.isAuthenticated();
-  console.log(res.locals.login);
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.locals.login = req.isAuthenticated();
+//   if(res.locals.login){
+//   next();
+// } else {
+//   res.redirect('/login')
+// }
+// });
 const getMeetupsByLatLon = (lat, lon, callback) => {
   console.log(`we are looking up the meetups near ${lat} and ${lon}`);
   var options = {url : `http://api.meetup.com//find/upcoming_events?\
@@ -67,7 +70,7 @@ const getLatLon = (zipcode, callback) => {
   })
 }
 app.post('/auth',
-  passport.authenticate('local', { successRedirect: '/profile',
+  passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/login',
                                    failureFlash: true }));
 
@@ -117,6 +120,10 @@ app.post('/signup', function(req, res, next) {
             });
         }
     });
+});
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
 });
 app.listen(3000, function(){
   console.log('listening on port 3000!')

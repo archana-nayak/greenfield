@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../components/index.jsx';
+import App from '../components/Index.jsx';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 class SignUpForm extends React.Component {
