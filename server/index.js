@@ -16,13 +16,19 @@ require('../passport.js')(passport);
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(session({secret: 'lakers rule', name: 'session_id', saveUninitialized: true, resave: true}));
+app.use(session({secret: 'haha', name: 'session_id', saveUninitialized: true, resave: true}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', express.static(__dirname + '/../client/dist'));
 app.use('/login', express.static(__dirname + '/../client/dist'));
 app.use('/signup', express.static(__dirname + '/../client/dist'));
+app.use(function (req, res, next) {
+  console.log('im checking something')
+  res.locals.login = req.isAuthenticated();
+  console.log(res.locals.login);
+  next();
+});
 const getMeetupsByLatLon = (lat, lon, callback) => {
   console.log(`we are looking up the meetups near ${lat} and ${lon}`);
   var options = {url : `http://api.meetup.com//find/upcoming_events?\
@@ -61,7 +67,7 @@ const getLatLon = (zipcode, callback) => {
   })
 }
 app.post('/auth',
-  passport.authenticate('local', { successRedirect: '/',
+  passport.authenticate('local', { successRedirect: '/profile',
                                    failureRedirect: '/login',
                                    failureFlash: true }));
 

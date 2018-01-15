@@ -11,7 +11,7 @@ module.exports = function(passport) {
     });
     passport.deserializeUser(function(id, done) {
       console.log('im in here des')
-        Model.grabUserCredentials(id, function(err, user) {
+        Model.getUserCredentials(id, function(err, user) {
             console.log('im in here grabbing')
             done(err, user);
         });
