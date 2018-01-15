@@ -2,10 +2,10 @@ DROP DATABASE IF EXISTS meetup;
 
 CREATE DATABASE meetup;
 \connect meetup;
-
+DROP TABLE IF EXISTS account;
 CREATE TABLE account (
 	id SERIAL PRIMARY KEY,
-	email TEXT unique NOT NULL,
+	email TEXT unique,
 	username TEXT unique NOT NULL,
 	password TEXT NOT NULL,
 	created_on TIMESTAMP,

@@ -1,3 +1,6 @@
+/server/config.js
+/server/localhost.crt
+/server/localhost.key
 ### node etc ###
 
 # Logs
@@ -17,7 +20,7 @@ coverage
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
-
+Az
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
 dist/
