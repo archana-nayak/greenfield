@@ -1,34 +1,60 @@
 body {
-  font-family: Arial;
-  /*background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);*/
-  background: white;
+  font-family: Roboto;
+  margin: 0px;
+  padding: 0px;
+  top: 0px;
+  background: #ECEFF1;
+}
+
+.listEntryClass {
+  font-weight: 600;
+}
+
+.descriptionClass {
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+input, button {
+  margin: auto;
+  width: 50%;
+  display: block;
+}
+
+#topbar {
+  top: 0px;
+  padding-top: 5px;
+  padding-bottom: 18px;
+  background: #2196F3 ;
+  border-bottom: 1px solid rgb(0,0,0,.5);
+}
+
+hr {
+  color: rgb(0,0,0,.12);
 }
 
 h1 {
-  padding-top: 5px;
+  top: 0px;
   background: #2196F3;
   padding-left: 50px;
   text-align: center;
-  /*border: 5px solid blue;*/
-  margin-left: 50px;
-  margin-right: 50px;
-  /*margin-bottom: 10px;*/
+  margin-bottom: auto;
+  bottom: 0px;
+  font-weight: 300;
 }
-h2 {
-  color: blue;
-  padding-left: 200px;
-  float: left;
-}
-ul {
+
+/*ul {
+  top: 0px;
   font-size: 25px;
-  padding: 0px;
-  margin: 0px;
   background-color: #F48FB1
-}
+}*/
 
 li {
   padding: 5px;
-  margin-top: 5px;
   font-size: 16px;
 }
 
@@ -41,13 +67,53 @@ li:hover {
 }
 
 ul {
-  float: right;
-  /*align: justify;*/
+  top: 0px;
+  border-left: 1px solid rgb(0,0,0,.12);
+  margin-top: 0px;
+  display: inline-block;
   list-style-type: none;
-  background: #CFD8DC;
+  background: #BDBDBD;
   width: 120%;
-  padding-left: 50px;
-  padding-right: 30px;
+  padding-left: 40px;
+  padding-right: 67px;
+  padding-top: 30px;
+  overflow: auto;
+  height: 165%;
+}
+
+.list {
+  top: 0px;
+  margin-top: auto;
+  display: inline-block;
+  width: 20%;
+  height: 320px;
+}
+
+.map {
+  top: 0px;
+  background: #BDBDBD;
+  float: left;
+  text-align: center;
+  padding: 175px;
+  padding-bottom: 249px;
+  padding-top: 249px;
+  width: 40%;
+}
+
+h3 {
+  transform: scale(5);
+  font-weight: 100;
+}
+
+h2 {
+  color: blue;
+  padding-left: 200px;
+  float: left;
+}
+
+
+.clearfix{
+    clear:both
 }
 
 .list {
@@ -56,41 +122,6 @@ ul {
   height: 320px;
   margin-right: 50px;
   /*padding-left: 300px;*/
-}
-
-.map {
-  background: #CFD8DC;
-  float: left;
-  text-align: center;
-  /*margin-top: 100px;*/
-  margin-left: 50px;
-  padding: 150px;
-  width: 40%;
-}
-.menu-enter {
-  max-height: 0px;
-  -webkit-transition: max-height 1s ease;
-  overflow: hidden;
-}
-
-.menu-enter.menu-enter-active {
-  height: auto;
-  max-height: 100px;
-}
-
-.menu-leave {
-  max-height: 100px;
-  -webkit-transition: max-height 1s ease;
-}
-
-.menu-leave.menu-leave-active {
-  overflow: hidden;
-  max-height: 0px;
-}
-
-ul {
-  border: #ababab solid 1px;
-  width: 70%;
 }
 .btn {
   background: #3498db;
