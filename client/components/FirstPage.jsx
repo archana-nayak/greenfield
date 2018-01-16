@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
 import MeetUpList from '../components/MeetUpList.jsx';
-import Map from '../components/Map.jsx';
+import MapContainer from '../components/MapContainer.jsx';
 import Login from '../components/Login.jsx';
 import LoginForm from '../components/LoginForm.jsx';
 import SignUpForm from '../components/SignUpForm.jsx';
@@ -37,10 +37,10 @@ class FirstPage extends React.Component {
     };
     weKnowTheLocation (pos) {
         var crd = pos.coords;
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
+        // console.log('Your current position is:');
+        // console.log(`Latitude : ${crd.latitude}`);
+        // console.log(`Longitude: ${crd.longitude}`);
+        // console.log(`More or less ${crd.accuracy} meters.`);
         var thisLat = crd.latitude;
         var thisLon = crd.longitude;
         this.setState({lat: thisLat});
@@ -63,7 +63,7 @@ class FirstPage extends React.Component {
     }
 
     getZipcode(event) {
-      console.log('we got the zipcode');
+      // console.log('we got the zipcode');
       this.setState({zipcode : event.target.value});
     }
 
@@ -83,7 +83,7 @@ class FirstPage extends React.Component {
           console.log(err);
         }
       }).done((meetups) => {
-        console.log('done');
+        // console.log('done');
           meetups = JSON.parse(meetups);
           this.setState({location: meetups.city});
           this.setState({events: meetups.events});
@@ -102,8 +102,11 @@ class FirstPage extends React.Component {
       <div className="askForZipCode">{this.state.zipcodeAsker}</div>
       <div>{this.state.zipcodebutton}</div>
       <div className="map">
-      <h3>Map Goes Here</h3>
-      <Map/>
+      <div>
+        <MapContainer meetups={this.state.events}
+        initialLocation={{lat: this.state.lat, lng: this.state.lon}} 
+        />
+      </div>
       </div>
       <div className="list">
       <MeetUpList events={this.state.events} />
@@ -113,3 +116,5 @@ class FirstPage extends React.Component {
   };
 }
 export default FirstPage;
+
+ 
