@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import MeetUpList from './MeetUpList.jsx';
-import Map from './Map.jsx';
+import MapContainer from '../components/MapContainer.jsx';
 import Login from './Login.jsx';
 import Profile from './Profile.jsx';
 import ProfileCard from './ProfileCard.jsx';
@@ -68,7 +68,6 @@ class FirstPage extends React.Component {
         this.setState({
           profile: data
         });
-        console.log('hello', data);
       },
       error: (error) => {
         console.log('fail safe', error)
@@ -125,8 +124,11 @@ class FirstPage extends React.Component {
       <div className="askForZipCode">{this.state.zipcodeAsker}</div>
       <div>{this.state.zipcodebutton}</div>
       <div className="map">
-      <h3>Map Goes Here</h3>
-      <Map/>
+      <div>
+       <MapContainer meetups={this.state.events}
+       initialLocation={{lat: this.state.lat, lng: this.state.lon}}
+       />
+      </div>
       </div>
       <div className="list">
       <MeetUpList events={this.state.events} />

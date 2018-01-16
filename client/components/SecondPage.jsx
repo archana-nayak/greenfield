@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
 import MeetUpList from './MeetUpList.jsx';
-import Map from './Map.jsx';
 import Login from './Login.jsx';
 import Profile from './Profile.jsx';
 import ProfileCard from './ProfileCard.jsx';
 import LoginForm from './LoginForm.jsx';
 import SignUpForm from './SignUpForm.jsx';
-//import server from '../server/index.js'
+import MapContainer from '../components/MapContainer.jsx';
 import { Link } from 'react-router-dom';
 import {BrowserRouter, Router, Route, browserHistory, Switch, IndexRoute} from 'react-router-dom';
 const path = require('path');
@@ -133,8 +132,11 @@ class SecondPage extends React.Component {
       <div className="askForZipCode">{this.state.zipcodeAsker}</div>
       <div>{this.state.zipcodebutton}</div>
       <div className="map">
-      <h3>Map Goes Here</h3>
-      <Map/>
+      <div>
+       <MapContainer meetups={this.state.events}
+       initialLocation={{lat: this.state.lat, lng: this.state.lon}}
+       />
+      </div>
       </div>
       <div className="list">
       <MeetUpList events={this.state.events} />

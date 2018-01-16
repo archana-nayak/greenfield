@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 class MeetupMap extends React.Component {
-  
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.google !== this.props.google || prevProps.meetups !== this.props.meetups) {
       this.loadMap();
@@ -32,7 +32,7 @@ class MeetupMap extends React.Component {
           position: {lat: meetup.group.lat, lng: meetup.group.lon},
           map: this.map,
           title: meetup.name,
-        });  
+        });
 
         const infowindow = new google.maps.InfoWindow({
           content: `<h6>${meetup.name}</h6>`
@@ -40,7 +40,7 @@ class MeetupMap extends React.Component {
         marker.addListener('click', () => {
           infowindow.open(this.map, marker);
           setTimeout(() => { infowindow.close(); }, 5000);
-        });  
+        });
       });
     }
   }

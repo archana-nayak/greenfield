@@ -5,7 +5,7 @@ import Index from './Index.jsx';
 import { Link } from 'react-router-dom';
 const ProfileCard = (props) => (
   <div className="card">
-  <img src={props.profile.profilepic} style={{'margin': '0 auto', 'width':'150px', 'height': '100px'}}/>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3sjvg567TeRTpVrueOai-GO3tLwyZ3HRZM8oNoBsBcbmsm-0Y2Q" style={{'margin': '0 auto', 'width':'150px', 'height': '100px'}}/>
   <p className="title">{props.profile.username}</p>
   <p>{props.profile.age}</p>
   <p>{props.profile.biography}</p>
