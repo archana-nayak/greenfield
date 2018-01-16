@@ -1,9 +1,9 @@
 body {
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   margin: 0px;
   padding: 0px;
   top: 0px;
-  background: #ECEFF1;
+  background: #BDBDBD;
 }
 
 .listEntryClass {
@@ -54,6 +54,16 @@ li {
 
 li:hover {
   background-color: #E0E0E0;
+  text-decoration-style: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.eventDescription {
+  font-size: 14px;
 }
 
 .clearfix{
@@ -68,29 +78,33 @@ ul {
   list-style-type: none;
   background: #BDBDBD;
   width: 120%;
-  padding-left: 40px;
+/*  padding-left: 40px;
   padding-right: 67px;
-  padding-top: 30px;
+  padding-top: 30px;*/
   overflow: auto;
   height: 165%;
 }
 
 .list {
   top: 0px;
-  margin-top: auto;
-  display: inline-block;
-  width: 20%;
-  height: 320px;
+  /*margin-top: auto;*/
+  /*display: inline-block;*/
+  float: right;
+  width: 30%;
+  height: 398px;
+  margin-right: 60px;
+  padding-right: 30px;
 }
 .map {
   top: 0px;
   background: #BDBDBD;
-  float: left;
-  text-align: center;
-  padding: 175px;
+  display: inline-block;
+/*  padding: 175px;
   padding-bottom: 249px;
-  padding-top: 249px;
+  padding-top: 249px;*/
   width: 40%;
+  height: 900px;
+  /*height: 60%;*/
 }
 h3 {
   transform: scale(5);
@@ -99,8 +113,8 @@ h3 {
 
 h2 {
   color: blue;
-  padding-left: 200px;
-  float: left;
+/*  padding-left: 200px;
+  float: left;*/
 }
 
 
@@ -108,13 +122,13 @@ h2 {
     clear:both
 }
 
-.list {
+/*.list {
+  display: inline-block;
   float: right;
   width: 20%;
   height: 320px;
   margin-right: 50px;
-  /*padding-left: 300px;*/
-}
+}*/
 .btn {
   background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);

@@ -34,21 +34,28 @@ class MeetupMap extends React.Component {
           title: meetup.name,
         });
 
+        function strip(html) {
+           var tmp = document.createElement("DIV");
+           tmp.innerHTML = html;
+           return tmp.textContent;
+        }
+        var desc = strip(meetup.description).slice(0,150) + '...';
+
         const infowindow = new google.maps.InfoWindow({
-          content: `<h6>${meetup.name}</h6>`
+          content: `<a href=${meetup.link} target="_blank"><h6>${meetup.name}</h6>${desc}</a>`
         });
         marker.addListener('click', () => {
           infowindow.open(this.map, marker);
-          setTimeout(() => { infowindow.close(); }, 5000);
         });
+        });  
       });
     }
   }
 
   render() {
-    const style = {
+    var style = {
       width: '65vw',
-      height: '65vh'
+      height: '90vh'
     }
     return (
       <div ref='map' style={style}>
