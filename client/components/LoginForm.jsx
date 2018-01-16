@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Login from '../components/Login.jsx';
+import Login from './Login.jsx';
 import $ from 'jquery';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 class LoginForm extends React.Component {
   constructor(props) {
@@ -38,6 +37,7 @@ class LoginForm extends React.Component {
         <input type="password" name="password" value={password} onChange={this.onChange} />
         <button>Login!</button>
       </form>
+      <Link className="btn" to={{pathname:'/signup'}}>No account? Sign up here</Link>
       </div>
     );
   }

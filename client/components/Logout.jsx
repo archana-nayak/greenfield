@@ -1,16 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FirstPage from './FirstPage.jsx';
-import SecondPage from './FirstPage.jsx';
 import Index from './Index.jsx';
 import { Link } from 'react-router-dom';
+import $ from 'jquery';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-class Login extends React.Component {
+class Logout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       items: []
     }
+  }
+  componentDidMount() {
+      console.log('im in fetching?')
+      $.ajax({
+      url: '/logout',
+      method: 'POST',
+      success: () => {
+        console.log('hello');
+
+      },
+      error: (error) => {
+        console.log('fail safe', error)
+      }
+    });
   }
   render() {
     return (
@@ -21,9 +35,11 @@ class Login extends React.Component {
       <Link className="btn" to={{pathname:'/'}}>home</Link>
       <Link className="btn" to={{pathname:'/login'}}>login</Link>
       <Link className="btn" to={{pathname:'/signup'}}>signup</Link>
+      <Link className="btn" to={{pathname:'/profile'}}>My Profile</Link>
       </h1>
+      <Link to={{pathname: '/'}}>TAKE ME HOME</Link>
       </div>
     );
   }
 }
-export default Login;
+export default Logout;

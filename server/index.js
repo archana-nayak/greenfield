@@ -6,32 +6,53 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const Promise = require('bluebird');
 const Model = require('../model2.js');
+const User = Model.User;
 const request = require('request');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const fs = require('fs');
+const $ = require('jquery')
 const config = require('./config.js');
 const app = express();
 require('../passport.js')(passport);
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(session({secret: 'haha', name: 'session_id', saveUninitialized: true, resave: true}));
+app.use(session({secret: 'haha', name: 'session_id', saveUninitialized: true, resave: true, cookie: {
+  maxAge: 2419200000 }}));
 app.use(flash());
 app.use(express.static('public'));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', express.static(__dirname + '/../client/dist'));
 app.use('/login', express.static(__dirname + '/../client/dist'));
+app.use('/logout', express.static(__dirname + '/../client/dist'));
 app.use('/signup', express.static(__dirname + '/../client/dist'));
-// app.use(function (req, res, next) {
-//   res.locals.login = req.isAuthenticated();
-//   if(res.locals.login){
-//   next();
-// } else {
-//   res.redirect('/login')
-// }
-// });
+app.use('/home', express.static(__dirname + '/../client/dist'));
+app.use('/profile', express.static(__dirname + '/../client/dist'));
+app.get('/home', function(req, res){
+  if(req.isAuthenticated()){
+    next();
+  }
+  res.send({redirect: '/login'})
+})
+app.get('/users', function(req, res){
+  console.log(req.user.local)
+  res.send(req.user.local)
+});
+app.get('/profile', function(req, res){
+  if(req.isAuthenticated()){
+    next();
+  }
+  res.send({redirect: '/login'})
+})
+app.get('/session', function(req, res){
+  if(!req.isAuthenticated()){
+  res.send({redirect: '/login'});
+ } else {
+   res.send({redirect: '/home'});
+ }
+});
 const getMeetupsByLatLon = (lat, lon, callback) => {
   console.log(`we are looking up the meetups near ${lat} and ${lon}`);
   var options = {url : `http://api.meetup.com//find/upcoming_events?\
@@ -40,7 +61,6 @@ const getMeetupsByLatLon = (lat, lon, callback) => {
   };
   request(options, (err, response, body) => {
     if (err) {
-
       callback(err, null);
     } else {
       callback(null, body);
@@ -60,11 +80,8 @@ const getLatLon = (zipcode, callback) => {
       callback(err, null);
     } else {
       var place = JSON.parse(body);
-      // console.log('place is ', place);
-      // console.log(place.results[0]);
       var lat = place.results[0].geometry.location.lat;
       var lon = place.results[0].geometry.location.lng;
-      // console.log(`the lat is ${lat} and the lon is ${lon}`);
       callback(null, lat, lon);
     }
   })
@@ -73,8 +90,9 @@ app.post('/auth',
   passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/login',
                                    failureFlash: true }));
-
 app.get('/meetups', function(req, res){
+  console.log(req.sessionID)
+  let sessionID = req.sessionID;
   var zipcode = req.param('zipcode');
   var lat = req.param('lat');
   var lon = req.param('lon');
@@ -98,11 +116,10 @@ app.get('/meetups', function(req, res){
         res.json(meetups);
       });
     };
-
-
 });
 app.post('/signup', function(req, res, next) {
     var user = req.body;
+    console.log('test', user)
     var usernamePromise = new Model.User({ username: user.username }).fetch();
     return usernamePromise.then(function(model) {
         if (model) {
@@ -111,19 +128,30 @@ app.post('/signup', function(req, res, next) {
             var email = user.email
             var password = user.password;
             var hash = bcrypt.hashSync(password, 10);
+            let sessionID = req.sessionID;
             var createdAt = function() { return new Date(); }
-            console.log(createdAt())
-            var signUpUser = new Model.User({ username: user.username, password: hash, email: email, name: user.name, created_at: createdAt()});
-
+            var signUpUser = new Model.User({
+              username: user.username,
+              password: hash,
+              email: email,
+              name: user.name,
+              created_at: createdAt(),
+              session_id: sessionID,
+              biography: user.biography,
+              location: user.location,
+              age: user.age,
+            });
             signUpUser.save({}, {method: 'insert'}).then(function(model) {
-                res.redirect('/');
+                res.redirect('/login');
             });
         }
     });
 });
-app.get('/logout', function(req, res){
+app.post('/logout', function(req, res){
+  res.setHeader("Content-Type", "text/html");
   req.logout();
-  res.redirect('/');
+  req.session.destroy();
+  res.send({redirect: '/'});
 });
 app.listen(3000, function(){
   console.log('listening on port 3000!')

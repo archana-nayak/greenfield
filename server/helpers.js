@@ -19,7 +19,6 @@ const getMeetupsByLatLon = (lat, lon, callback) => {
   })
 
 };
-
 const getLatLon = (zipcode, callback) => {
   var options = {
     url: `https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}`,
