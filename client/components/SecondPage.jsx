@@ -122,8 +122,9 @@ class SecondPage extends React.Component {
       <div>
       <div>
       <h1 style={{display: 'flex'}}>
-      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's Going On Tonight?</text>
-      <Link className="btn" to={{pathname:'/home'}}>Home</Link>
+      <img src='https://n6-img-fp.akamaized.net/free-icon/telegram-logo_318-102687.jpg?size=338c&ext=jpg' width="30" height="50"/>
+      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>our app</text>
+      <Link className="btn" to={{pathname:'/home'}}>home</Link>
       <Link className="btn" to={{pathname:'/logout'}}>Logout</Link>
       <Link className="btn" to={{pathname:'/profile'}}>{this.state.profile.username}'s profile</Link>
       </h1>
@@ -136,10 +137,10 @@ class SecondPage extends React.Component {
        initialLocation={{lat: this.state.lat, lng: this.state.lon}}
        />
       </div>
+      <ProfileCard profile={this.state.profile}/>
       </div>
       <div className="list">
       <MeetUpList events={this.state.events} />
-      <ProfileCard profile={this.state.profile}/>
       </div>
       </div>
     );
