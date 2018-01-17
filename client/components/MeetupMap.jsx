@@ -17,8 +17,6 @@ class MeetupMap extends React.Component {
       const node = ReactDOM.findDOMNode(mapRef);
       let {zoom} = this.props;
       const {lat, lng} = this.props.initialCenter;
-      // console.log('lat ', lat);
-      // console.log('lng ', lng);
       const center = new maps.LatLng(lat, lng);
       const mapConfig = Object.assign({}, {
         center: center,
@@ -26,6 +24,7 @@ class MeetupMap extends React.Component {
       })
       this.map = new maps.Map(node, mapConfig);
       let markers = [];
+      let latLng;
       this.props.meetups.map((meetup, index) => {
         if (!meetup.venue) {
           latLng = new google.maps.LatLng(meetup.group.lat, meetup.group.lon);
