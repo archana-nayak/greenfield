@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import axios from 'axios';
 import MeetUpList from './MeetUpList.jsx';
-import MapContainer from '../components/MapContainer.jsx';
 import Login from './Login.jsx';
 import Profile from './Profile.jsx';
 import ProfileCard from './ProfileCard.jsx';
 import LoginForm from './LoginForm.jsx';
 import SignUpForm from './SignUpForm.jsx';
+import MapContainer from '../components/MapContainer.jsx';
+import { Link } from 'react-router-dom';
 import {BrowserRouter, Router, Route, browserHistory, Switch, IndexRoute} from 'react-router-dom';
 const path = require('path');
-class FirstPage extends React.Component {
+class SecondPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -25,7 +27,7 @@ class FirstPage extends React.Component {
         zipcodebutton: '',
         profile: ''
       }
-      this.fetchSession = this.fetchSession.bind(this);
+      this.fetchProfileInfo = this.fetchProfileInfo.bind(this);
       this.getZipcode = this.getZipcode.bind(this);
       this.getMeetups = this.getMeetups.bind(this);
       this.weKnowTheLocation = this.weKnowTheLocation.bind(this);
@@ -56,18 +58,16 @@ class FirstPage extends React.Component {
         this.setState({zipcodeAsker: (<input id="ourZip" placeholder="zipcode" value={this.state.zipcodes} onChange={this.getZipcode}></input>)});
         this.setState({zipcodebutton: (<button id="meetupRequest" onClick={this.getMeetups}>Find MeetUps</button>)});
       };
-    fetchSession() {
+    fetchProfileInfo() {
       console.log('im in fetching?')
       $.ajax({
-      url: '/session',
+      url: '/users',
       method: 'GET',
       success: (data) => {
-        if (typeof data.redirect == 'string'){
-            window.location = data.redirect
-          }
         this.setState({
           profile: data
         });
+        console.log('hello', data);
       },
       error: (error) => {
         console.log('fail safe', error)
@@ -80,7 +80,7 @@ class FirstPage extends React.Component {
         timeout: 5000,
         maximumAge: 0
       };
-      this.fetchSession();
+      this.fetchProfileInfo();
       this.id = navigator.geolocation.getCurrentPosition(this.weKnowTheLocation, this.errorHandler, options);
     }
 
@@ -120,7 +120,15 @@ class FirstPage extends React.Component {
   render() {
     return (
       <div>
-      <Login/>
+      <div>
+      <h1 style={{display: 'flex'}}>
+      <img src='https://n6-img-fp.akamaized.net/free-icon/telegram-logo_318-102687.jpg?size=338c&ext=jpg' width="30" height="50"/>
+      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>our app</text>
+      <Link className="btn" to={{pathname:'/home'}}>home</Link>
+      <Link className="btn" to={{pathname:'/logout'}}>Logout</Link>
+      <Link className="btn" to={{pathname:'/profile'}}>{this.state.profile.username}'s profile</Link>
+      </h1>
+      </div>
       <div className="askForZipCode">{this.state.zipcodeAsker}</div>
       <div>{this.state.zipcodebutton}</div>
       <div className="map">
@@ -138,4 +146,4 @@ class FirstPage extends React.Component {
     );
   };
 }
-export default FirstPage;
+export default SecondPage;

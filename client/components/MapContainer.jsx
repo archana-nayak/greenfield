@@ -6,7 +6,7 @@ class MapContainer extends React.Component {
   render() {
     return (
       <div className="MapContainer">
-        <MeetupMap 
+        <MeetupMap
           google={this.props.google}
           initialCenter = {this.props.initialLocation}
           zoom = {13}
@@ -14,7 +14,7 @@ class MapContainer extends React.Component {
           {...this.props}/>
       </div>
     );
-  } 
+  }
 }
 
 export default GoogleApiWrapper({

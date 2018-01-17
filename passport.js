@@ -10,18 +10,16 @@ module.exports = function(passport) {
         done(null, user.id);
     });
     passport.deserializeUser(function(id, done) {
-      console.log('im in here des')
         Model.getUserCredentials(id, function(err, user) {
-            console.log('im in here grabbing')
             done(err, user);
         });
     });
     passport.use(new LocalStrategy(function(username, password, done) {
-      console.log('in here')
         const hash = bcrypt.hashSync(password, 10);
         new Model.User({username: username}).fetch().then(function(data) {
-          console.log('IM IN HERE', data)
             var user = data;
+            let sessionID = user.attributes.session_id;
+            console.log('hi user', sessionID)
             if (user === null) {
                 return done(null, false, { message: 'Invalid username or password' });
             } else {
@@ -29,7 +27,6 @@ module.exports = function(passport) {
                 if(!bcrypt.compareSync(password, user.password)) {
                     return done(null, false, { message: 'Invalid password' });
                 } else {
-                    console.log('im not failing?', user)
                     return done(null, user);
                 }
             }
