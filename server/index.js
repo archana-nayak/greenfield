@@ -56,7 +56,7 @@ app.get('/session', function(req, res){
 const getMeetupsByLatLon = (lat, lon, callback) => {
   console.log(`we are looking up the meetups near ${lat} and ${lon}`);
   var options = {url : `http://api.meetup.com//find/upcoming_events?\
-    photo-host=public&fields=group_photo&page=20&key=${config.MEETINGS_API_KEY}&lat=${lat}&lon=${lon}`,
+    photo-host=public&fields=group_photo&page=20&key=${config.MEETINGS_API_KEY}&lat=${lat}&lon=${lon}&radius=1`,
     headers: {'User-Agent': 'request'}
   };
   request(options, (err, response, body) => {
@@ -135,11 +135,11 @@ app.post('/signup', function(req, res, next) {
               password: hash,
               email: email,
               name: user.name,
-              created_at: createdAt(),
+              // created_at: createdAt(),
               session_id: sessionID,
-              biography: user.biography,
-              location: user.location,
-              age: user.age,
+              // biography: user.biography,
+              // location: user.location,
+              // age: user.age,
             });
             signUpUser.save({}, {method: 'insert'}).then(function(model) {
                 res.redirect('/login');

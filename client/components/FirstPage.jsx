@@ -97,7 +97,6 @@ class FirstPage extends React.Component {
         contentType: 'application/json',
         data: {zipcode : this.state.zipcode, lat: this.state.lat, lon: this.state.lon},
         success: (meetups) => {
-          console.log('successsssssss!');
          this.setState({meetups : meetups});
         },
         error: (err) => {
@@ -119,16 +118,14 @@ class FirstPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="mainDiv">
       <Login/>
       <div className="askForZipCode">{this.state.zipcodeAsker}</div>
       <div>{this.state.zipcodebutton}</div>
       <div className="map">
-      <div>
-       <MapContainer meetups={this.state.events}
-       initialLocation={{lat: this.state.lat, lng: this.state.lon}}
-       />
-      </div>
+        <MapContainer meetups={this.state.events}
+        initialLocation={{lat: this.state.lat, lng: this.state.lon}} 
+        />
       </div>
       <div className="list">
       <MeetUpList events={this.state.events} />
