@@ -11,22 +11,22 @@ var knex = require('knex')({
 });
 
     // connect with database selected
-knex.schema.createTableIfNotExists('users', function (table) {
-     table.string('username');
-     table.string('password');
-     table.string('name');
-     table.string('email');
-     table.increments('id');
-     // table.timestamps('created_at');
-     table.timestamps('last_login');
-     table.string('location');
-     table.string('age');
-     table.string('profilepic');
-     table.string('biography');
-     table.string('session_id');
-   })
-   .then(function() {
-});
+
+    knex.schema.createTableIfNotExists('users', function (table) {
+      table.string('username');
+      table.string('password');
+      table.string('name');
+      table.string('email');
+      table.increments('id');
+      table.timestamps('created_at');
+      table.timestamps('last_login');
+      table.string('age');
+      table.string('profilepic');
+      table.string('biography');
+      table.string('name');
+    })
+    .then(function() {
+ });
 
 var DB = require('bookshelf')(knex);
 
