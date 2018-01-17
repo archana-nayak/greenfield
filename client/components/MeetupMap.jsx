@@ -9,8 +9,6 @@ class MeetupMap extends React.Component {
     }
   }
 
-  // console.log(this.props.meetups);
-
   loadMap() {
     if (this.props && this.props.google) {
       const {google} = this.props;
@@ -19,6 +17,8 @@ class MeetupMap extends React.Component {
       const node = ReactDOM.findDOMNode(mapRef);
       let {zoom} = this.props;
       const {lat, lng} = this.props.initialCenter;
+      // console.log('lat ', lat);
+      // console.log('lng ', lng);
       const center = new maps.LatLng(lat, lng);
       const mapConfig = Object.assign({}, {
         center: center,
@@ -26,53 +26,29 @@ class MeetupMap extends React.Component {
       })
       this.map = new maps.Map(node, mapConfig);
 
-      for (var i = 0; i < this.props.meetups.length; i++) {
-        console.log(this.props.meetups[i].name);
-      }
+      this.props.meetups.map((meetup, index) => {
 
-      var holder = [];
-      console.log('HEEEEEEEEEEY');
-      for (var i = 0; i < this.props.meetups.length; i++) {
-        console.log(this.props.meetups[i]);
-        if (this.props.meetups[i].venue) {
-          console.log(`There is a venue! It is at ${this.props.meetups[i].venue.lat} and ${this.props.meetups[i].venue.lon}`)
-          holder.push(this.props.meetups[i]);
-        }
-      }
-      console.log(holder);
-      holder.map((meetup, index) => {
-        // console.log(`the meetup's name is ${meetup.name}`);
-        // console.log(`the meetups venue is ${meetup.venue}`);
-        // console.log(`lat: ${meetup.venue.lat} lon: ${meetup.venue.lon}`);
-        console.log('NOW PLOTTIN THIS MEETUP');
-        console.dir(meetup);
         const marker = new google.maps.Marker({
           position: {lat: meetup.group.lat, lng: meetup.group.lon},
           map: this.map,
           title: meetup.name,
         });
-        });  
-
-        function strip(html) {
-           var tmp = document.createElement("DIV");
-           tmp.innerHTML = html;
-           return tmp.textContent;
-        }
-        var desc = strip(meetup.description).slice(0,150) + '...';
 
         const infowindow = new google.maps.InfoWindow({
-          content: `<a href=${meetup.link} target="_blank"><h6>${meetup.name}</h6>${desc}</a>`
+          content: `<h6>${meetup.name}</h6>`
         });
         marker.addListener('click', () => {
           infowindow.open(this.map, marker);
+          setTimeout(() => { infowindow.close(); }, 5000);
         });
+      });
     }
   }
 
   render() {
-    var style = {
+    const style = {
       width: '65vw',
-      height: '90vh'
+      height: '65vh'
     }
     return (
       <div ref='map' style={style}>

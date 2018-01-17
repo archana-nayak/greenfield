@@ -122,9 +122,8 @@ class SecondPage extends React.Component {
       <div>
       <div>
       <h1 style={{display: 'flex'}}>
-      <img src='https://n6-img-fp.akamaized.net/free-icon/telegram-logo_318-102687.jpg?size=338c&ext=jpg' width="30" height="50"/>
-      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>our app</text>
-      <Link className="btn" to={{pathname:'/home'}}>home</Link>
+      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's Going On Tonight?</text>
+      <Link className="btn" to={{pathname:'/home'}}>Home</Link>
       <Link className="btn" to={{pathname:'/logout'}}>Logout</Link>
       <Link className="btn" to={{pathname:'/profile'}}>{this.state.profile.username}'s profile</Link>
       </h1>
