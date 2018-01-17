@@ -9,10 +9,9 @@ class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showForm: false,
-      showSimple: false,
-      clickableSimple: true,
-      clickableExtended: true,
+      showExtended: false,
+      showSimple: true,
+      displayText: true,
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleClickTwo = this.handleClickTwo.bind(this);
@@ -39,16 +38,16 @@ class SignUpForm extends React.Component {
   }
   handleClick() {
     this.setState({
-      showExtended: true,
-      clickableSimple: false,
-      clickableExtended: false
+      showSimple: !this.state.showSimple,
+      showExtended: !this.state.showExtended,
+      displayText: !this.state.displayText
     })
   }
   handleClickTwo() {
     this.setState({
-      showSimple: true,
-      clickableSimple: false,
-      clickableExtended: false
+      showSimple: !this.state.showSimple,
+      showExtended: !this.state.showExtended,
+      displayText: !this.state.displayText
     })
   }
   render() {
@@ -62,8 +61,8 @@ class SignUpForm extends React.Component {
       <Link className="btn" to={{pathname:'/signup'}}>signup</Link>
       <Link className="btn" to={{pathname:'/profile'}}>My Profile</Link>
       </h1>
-      <button className="btn" onClick={this.state.clickableSimple ? this.handleClickTwo : null}>Simple Signup </button>
-      <button className="btn" onClick={this.state.clickableExtended ? this.handleClick: null}>Create a profile with it!</button>
+      <button className="btn" onClick={this.handleClickTwo}>Simple signup </button>
+      <button className="btn" onClick={this.handleClick}>Create a profile with it!</button>
       {this.state.showExtended ? <SignUpFormExtended/>  : null}
       {this.state.showSimple ? <SignUpFormSimple/> : null}
       </div>

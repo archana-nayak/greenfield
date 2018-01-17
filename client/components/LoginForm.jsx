@@ -28,7 +28,6 @@ class LoginForm extends React.Component {
       <Link className="btn" to={{pathname:'/'}}>home</Link>
       <Link className="btn" to={{pathname:'/login'}}>login</Link>
       <Link className="btn" to={{pathname:'/signup'}}>signup</Link>
-      <Link className="btn" to={{pathname:'/profile'}}>My Profile</Link>
       </h1>
       <form action='/auth' method='post'>
         <label htmlFor="username">Enter your username</label>
@@ -36,8 +35,9 @@ class LoginForm extends React.Component {
         <label htmlFor="password">Enter your password</label>
         <input type="password" name="password" value={password} onChange={this.onChange} />
         <button>Login!</button>
+        <Link className="btn" to={{pathname:'/signup'}}>No account? Sign up here</Link>
+        <Link className="btn" to={{pathname:'/home'}}>I don't wanna</Link>
       </form>
-      <Link className="btn" to={{pathname:'/signup'}}>No account? Sign up here</Link>
       </div>
     );
   }

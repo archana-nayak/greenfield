@@ -35,7 +35,7 @@ app.get('/home', function(req, res){
     next();
   }
   res.send({redirect: '/login'})
-})
+});
 app.get('/users', function(req, res){
   console.log(req.user.local)
   res.send(req.user.local)

@@ -13,7 +13,6 @@ const path = require('path');
 class FirstPage extends React.Component {
   constructor(props) {
     super(props);
-
       this.state = {
         items: [],
         zipcode: '',
