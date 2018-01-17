@@ -66,8 +66,6 @@ class MeetupMap extends React.Component {
         marker.addListener('click', () => {
           infowindow.open(this.map, marker);
         });
-        });  
-      });
     }
   }
 
