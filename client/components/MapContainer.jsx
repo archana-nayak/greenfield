@@ -10,7 +10,7 @@ class MapContainer extends React.Component {
           google={this.props.google}
           initialCenter = {this.props.initialLocation}
           zoom = {13}
-          meetups={this.props.meetsup}
+          meetups={this.props.meetups}
           {...this.props}/>
       </div>
     );

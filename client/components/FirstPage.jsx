@@ -97,7 +97,6 @@ class FirstPage extends React.Component {
         contentType: 'application/json',
         data: {zipcode : this.state.zipcode, lat: this.state.lat, lon: this.state.lon},
         success: (meetups) => {
-          console.log('successsssssss!');
          this.setState({meetups : meetups});
         },
         error: (err) => {
