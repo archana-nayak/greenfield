@@ -139,9 +139,6 @@ class SecondPage extends React.Component {
           this.setState({events: meetups.events});
           console.log(this.state.photo);});
           this.displayList();
-        //now we should call the function to plot the meetups on the map
-        //and also populate the list with meetup descriptions
-        //console.log(JSON.parse(meetups));});
     }
   render() {
     return (
