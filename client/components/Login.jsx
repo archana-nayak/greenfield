@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FirstPage from './FirstPage.jsx';
-import SecondPage from './FirstPage.jsx';
+import SecondPage from './SecondPage.jsx';
 import Index from './Index.jsx';
 import { Link } from 'react-router-dom';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
@@ -16,7 +16,7 @@ class Login extends React.Component {
     return (
       <div>
       <h1 style={{display: 'flex'}}>
-      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's Going On Tonight?</text>
+      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What"'"s Going On Tonight?</text>
       <Link className="btn" to={{pathname:'/'}}>home</Link>
       <Link className="btn" to={{pathname:'/login'}}>login</Link>
       <Link className="btn" to={{pathname:'/signup'}}>signup</Link>

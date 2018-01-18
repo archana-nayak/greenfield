@@ -25,7 +25,7 @@ input, button {
   display: block;
 }
 
-#topbar {
+topbar {
   top: 0px;
   padding-top: 5px;
   padding-bottom: 18px;
@@ -90,7 +90,7 @@ ul {
   /*margin-top: auto;*/
   /*display: inline-block;*/
   float: right;
-  width: 30%;
+  width: 22.5%;
   height: 398px;
   margin-right: 60px;
   padding-right: 30px;
@@ -130,7 +130,7 @@ h2 {
   margin-right: 50px;
 }*/
 .btn {
-  background: #3498db;
+  background: #2196F3;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
   background-image: -moz-linear-gradient(top, #3498db, #2980b9);
   background-image: -ms-linear-gradient(top, #3498db, #2980b9);
@@ -145,7 +145,6 @@ h2 {
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 }
-
 .btn:hover {
   background: #3cb0fd;
   background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
@@ -163,9 +162,32 @@ h2 {
 }
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 550px;
     float: right;
     text-align: center;
+    margin-top: 0px;
+}
+.seeMore {
+    background: #fff;
+    float: left;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    margin-top: 0px;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+   /* or inline-flex */
+}
+.flexItem {
+  padding: 5px;
+  width: 200px;
+  height: 150px;
+  margin-top: 10px;
+  line-height: 150px;
+  color: white;
+  font-weight: bold;
+  font-size: 3em;
+  text-align: center;
 }
 .title{
   color: grey,

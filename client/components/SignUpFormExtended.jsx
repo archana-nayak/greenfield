@@ -6,35 +6,6 @@ import { Link } from 'react-router-dom';
 class SignUpFormExtended extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showForm: false
-    }
-    this.handleClick = this.handleClick.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const data = new FormData(event.target);
-    this.fetch(data)
-  }
-  fetch(data){
-    $.ajax({
-    url: '/signup',
-    method: 'POST',
-    body: data,
-    success: () => {
-      console.log('hello')
-    },
-    error: (error) => {
-      console.log('fail safe', error)
-    }
-  });
-  }
-  handleClick() {
-    this.setState({
-      showForm: true
-    })
   }
   render() {
     return (

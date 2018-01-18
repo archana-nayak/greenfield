@@ -32,11 +32,10 @@ class Profile extends React.Component {
     return (
   <div>
   <h1 style={{display: 'flex'}}>
-  <img src='https://n6-img-fp.akamaized.net/free-icon/telegram-logo_318-102687.jpg?size=338c&ext=jpg' width="30" height="50"/>
-  <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>our app</text>
-  <Link className="btn" to={{pathname:'/home'}}>home</Link>
-  <Link className="btn" to={{pathname:'/logout'}}>logout</Link>
-  <Link className="btn" to={{pathname:'/profile'}}>My Profile</Link>
+  <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight</text>
+  <Link className="btn" to={{pathname:'/home'}}>Home</Link>
+  <Link className="btn" to={{pathname:'/logout'}}>Logout</Link>
+  <Link className="btn" to={{pathname:'/profile'}}>{this.state.profile.username}'s profile</Link>
   </h1>
   <div className="profile">
   <img src="http://www.telegraph.co.uk/content/dam/men/2016/05/24/Untitled-1_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpg?imwidth=450" alt="John" style={{'margin': '0 auto', 'width':'150px', 'height': '100px'}}/>

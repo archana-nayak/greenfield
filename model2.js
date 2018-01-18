@@ -18,10 +18,11 @@ function getUserCredentials(userId, callback) {
             password: '',
             biography: '',
             location: '',
+            name: '',
             age: 0
         },
       }
-      knex.select('users.id', 'users.username', 'users.password', 'users.biography', 'users.location', 'users.profilepic')
+      knex.select('users.id', 'users.username', 'users.password', 'users.biography', 'users.location', 'users.name', 'users.age')
                 .from('users')
                 .where('users.id', '=', userId).then(function(row) {
         row = row[0];
@@ -33,6 +34,7 @@ function getUserCredentials(userId, callback) {
             loginUser.local.biography     = row.biography;
             loginUser.local.location      = row.location;
             loginUser.local.age           = row.age;
+            loginUser.local.name          = row.name;
             callback(null, loginUser);
         }
     });
