@@ -23,11 +23,10 @@ class LoginForm extends React.Component {
     return (
       <div>
       <h1 style={{display: 'flex'}}>
-      <img src='https://n6-img-fp.akamaized.net/free-icon/telegram-logo_318-102687.jpg?size=338c&ext=jpg' width="30" height="50"/>
-      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>our app</text>
-      <Link className="btn" to={{pathname:'/'}}>home</Link>
-      <Link className="btn" to={{pathname:'/login'}}>login</Link>
-      <Link className="btn" to={{pathname:'/signup'}}>signup</Link>
+      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight?</text>
+      <Link className="btn" to={{pathname:'/'}}>Home</Link>
+      <Link className="btn" to={{pathname:'/login'}}>Login</Link>
+      <Link className="btn" to={{pathname:'/signup'}}>Signup</Link>
       </h1>
       <form action='/auth' method='post'>
         <label htmlFor="username">Enter your username</label>
@@ -35,8 +34,10 @@ class LoginForm extends React.Component {
         <label htmlFor="password">Enter your password</label>
         <input type="password" name="password" value={password} onChange={this.onChange} />
         <button>Login!</button>
-        <Link className="btn" to={{pathname:'/signup'}}>No account? Sign up here</Link>
-        <Link className="btn" to={{pathname:'/home'}}>I don't wanna</Link>
+        <Link className="btn" style={{backgroundColor: 'blue'}}to={{pathname:'/signup'}}>No account? Sign up here</Link>
+        <div>
+        <Link className="btn" style={{backgroundColor: 'blue'}}to={{pathname:'/home'}}>I don't wanna</Link>
+        </div>
       </form>
       </div>
     );

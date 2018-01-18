@@ -30,14 +30,12 @@ class Logout extends React.Component {
     return (
       <div>
       <h1 style={{display: 'flex'}}>
-      <img src='https://n6-img-fp.akamaized.net/free-icon/telegram-logo_318-102687.jpg?size=338c&ext=jpg' width="30" height="50"/>
-      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>our app</text>
-      <Link className="btn" to={{pathname:'/'}}>home</Link>
-      <Link className="btn" to={{pathname:'/login'}}>login</Link>
-      <Link className="btn" to={{pathname:'/signup'}}>signup</Link>
-      <Link className="btn" to={{pathname:'/profile'}}>My Profile</Link>
+      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight</text>
+      <Link className="btn" to={{pathname:'/'}}>Home</Link>
+      <Link className="btn" to={{pathname:'/login'}}>Login</Link>
+      <Link className="btn" to={{pathname:'/signup'}}>Signup</Link>
       </h1>
-      <Link to={{pathname: '/'}}>TAKE ME HOME</Link>
+      <div style={{textAlign: 'center', fontSize: '40px', textDecoration: 'underline'}}><Link to={{pathname: '/'}}>TAKE ME HOME</Link></div>
       </div>
     );
   }

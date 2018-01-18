@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
+import SecondPage from './SecondPage.jsx';
 class MeetupMap extends React.Component {
-
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.google !== this.props.google || prevProps.meetups !== this.props.meetups) {
       this.loadMap();
@@ -30,17 +29,18 @@ class MeetupMap extends React.Component {
           latLng = new google.maps.LatLng(meetup.group.lat, meetup.group.lon);
         } else {
           latLng = new google.maps.LatLng(meetup.venue.lat, meetup.venue.lon);
-        }  
+        }
         const marker = new google.maps.Marker({
           position: latLng,
           title: meetup.name
-        });  
+        });
         markers.push(marker);
 
         const infowindow = new google.maps.InfoWindow({
-          content: `<h6>${meetup.name}</h6>`
+          content: `<h6>${meetup.name}</h6>`,
         });
         marker.addListener('click', () => {
+          this.props.seeMore(marker.title);
           infowindow.open(this.map, marker);
           setTimeout(() => { infowindow.close(); }, 5000);
         });
@@ -49,7 +49,7 @@ class MeetupMap extends React.Component {
         markers.forEach((marker) => {
           marker.setMap(this.map);
         });
-      }  
+      }
     }
   }
 

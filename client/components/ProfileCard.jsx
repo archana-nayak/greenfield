@@ -10,7 +10,7 @@ const ProfileCard = (props) => (
   <p>{props.profile.age}</p>
   <p>{props.profile.username}</p>
   <p>{props.profile.location}</p>
-  <Link to={{pathname:'/profile'}}>My Profile</Link>
+  <Link style={{fontWeight: 'bold'}} to={{pathname:'/profile'}}>Go to my profile</Link>
   </div>
 )
 

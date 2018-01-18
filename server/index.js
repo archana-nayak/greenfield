@@ -37,7 +37,6 @@ app.get('/home', function(req, res){
   res.send({redirect: '/login'})
 });
 app.get('/users', function(req, res){
-  console.log(req.user.local)
   res.send(req.user.local)
 });
 app.get('/profile', function(req, res){
@@ -91,7 +90,6 @@ app.post('/auth',
                                    failureRedirect: '/login',
                                    failureFlash: true }));
 app.get('/meetups', function(req, res){
-  console.log(req.sessionID)
   let sessionID = req.sessionID;
   var zipcode = req.param('zipcode');
   var lat = req.param('lat');
@@ -119,7 +117,6 @@ app.get('/meetups', function(req, res){
 });
 app.post('/signup', function(req, res, next) {
     var user = req.body;
-    console.log('test', user)
     var usernamePromise = new Model.User({ username: user.username }).fetch();
     return usernamePromise.then(function(model) {
         if (model) {
@@ -135,11 +132,11 @@ app.post('/signup', function(req, res, next) {
               password: hash,
               email: email,
               name: user.name,
-              // created_at: createdAt(),
+              created_at: createdAt(),
               session_id: sessionID,
-              // biography: user.biography,
-              // location: user.location,
-              // age: user.age,
+              biography: user.biography,
+              location: user.location,
+              age: user.age,
             });
             signUpUser.save({}, {method: 'insert'}).then(function(model) {
                 res.redirect('/login');
