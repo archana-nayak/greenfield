@@ -17,22 +17,25 @@ class MeetupMap extends React.Component {
       const node = ReactDOM.findDOMNode(mapRef);
       let {zoom} = this.props;
       const {lat, lng} = this.props.initialCenter;
-      // console.log('lat ', lat);
-      // console.log('lng ', lng);
       const center = new maps.LatLng(lat, lng);
       const mapConfig = Object.assign({}, {
         center: center,
         zoom: zoom
       })
       this.map = new maps.Map(node, mapConfig);
-
+      let markers = [];
+      let latLng;
       this.props.meetups.map((meetup, index) => {
-
+        if (!meetup.venue) {
+          latLng = new google.maps.LatLng(meetup.group.lat, meetup.group.lon);
+        } else {
+          latLng = new google.maps.LatLng(meetup.venue.lat, meetup.venue.lon);
+        }  
         const marker = new google.maps.Marker({
-          position: {lat: meetup.group.lat, lng: meetup.group.lon},
-          map: this.map,
-          title: meetup.name,
-        });
+          position: latLng,
+          title: meetup.name
+        });  
+        markers.push(marker);
 
         const infowindow = new google.maps.InfoWindow({
           content: `<h6>${meetup.name}</h6>`
@@ -42,6 +45,11 @@ class MeetupMap extends React.Component {
           setTimeout(() => { infowindow.close(); }, 5000);
         });
       });
+      if (this.map) {
+        markers.forEach((marker) => {
+          marker.setMap(this.map);
+        });
+      }  
     }
   }
 

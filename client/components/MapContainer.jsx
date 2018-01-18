@@ -1,6 +1,7 @@
 import React from 'react';
 import { GoogleApiWrapper } from 'google-maps-react';
 import MeetupMap from './MeetupMap.jsx';
+import config from '../../config.js';
 
 class MapContainer extends React.Component {
   render() {
@@ -18,6 +19,6 @@ class MapContainer extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyChZPizXo_3sk70Cm4yveOd0YfQtuxc7As',
+  apiKey: config.GOOGLE_MAPS_API_KEY,  
   libraries:['places']
 })(MapContainer)
