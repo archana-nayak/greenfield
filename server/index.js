@@ -120,7 +120,7 @@ app.post('/signup', function(req, res, next) {
     var usernamePromise = new Model.User({ username: user.username }).fetch();
     return usernamePromise.then(function(model) {
         if (model) {
-            res.render('signup', { title: 'signup', errorMessage: 'username already exists' });
+            res.render('/signup', { title: 'signup', errorMessage: 'username already exists' });
         } else {
             var email = user.email
             var password = user.password;
@@ -144,10 +144,10 @@ app.post('/signup', function(req, res, next) {
         }
     });
 });
-app.post('/logout', function(req, res){
-  res.setHeader("Content-Type", "text/html");
-  req.logout();
+app.post('/logouttest', function(req, res){
+  //res.setHeader("Content-Type", "text/html");
   req.session.destroy();
+  req.logout();
   res.send({redirect: '/'});
 });
 app.listen(3000, function(){
