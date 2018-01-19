@@ -9,8 +9,10 @@ import ProfileCard from './ProfileCard.jsx';
 import SeeMoreCard from './SeeMoreCard.jsx';
 import LoginForm from './LoginForm.jsx';
 import SignUpForm from './SignUpForm.jsx';
+import moment from 'moment';
 import MapContainer from '../components/MapContainer.jsx';
 import { Link } from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {BrowserRouter, Router, Route, browserHistory, Switch, IndexRoute} from 'react-router-dom';
 const path = require('path');
 class SecondPage extends React.Component {
@@ -33,8 +35,11 @@ class SecondPage extends React.Component {
         photo: {},
         description: '',
         displayCard: false,
-        displaySeeMore: false
+        displaySeeMore: false,
+        date: ''
       }
+      this.saveEvent = this.saveEvent.bind(this);
+      this.closeButton = this.closeButton.bind(this);
       this.onProfileClick = this.onProfileClick.bind(this);
       this.fetchProfileInfo = this.fetchProfileInfo.bind(this);
       this.getZipcode = this.getZipcode.bind(this);
@@ -59,7 +64,8 @@ class SecondPage extends React.Component {
             description: this.strip(event.description),
             group: event.group,
             photo: event.group.photo ? event.group.photo : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS5QBzAjXODH-QDaa6tVLGT10ZHa8aiJzgKL_n4F-a_H9lnuA-fQ',
-            displaySeeMore: true
+            displaySeeMore: true,
+            date: moment(event.local_date, "YYYY-MM-DD").format("MM-DD-YYYY").split('-').join('/')
           })
         }
       });
@@ -81,7 +87,21 @@ class SecondPage extends React.Component {
         navigator.geolocation.clearWatch(this.id);
         this.getMeetups();
     };
-
+    saveEvent() {
+      console.log(this.state.meetup);
+      $.ajax({
+        url: '/userevents',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(this.state.meetup),
+        success: () => {
+          console.log('successsssssss!');
+        },
+        error: (err) => {
+          console.log('an error is happen', err);
+        }
+      })
+    }
     errorHandler () {
         this.setState({zipcodeAsker: (<input id="ourZip" placeholder="zipcode" value={this.state.zipcodes} onChange={this.getZipcode}></input>)});
         this.setState({zipcodebutton: (<button id="meetupRequest" onClick={this.getMeetups}>Find MeetUps</button>)});
@@ -100,10 +120,15 @@ class SecondPage extends React.Component {
       }
     });
     }
+    closeButton() {
+      this.setState({
+        displaySeeMore: !this.state.displaySeeMore
+      })
+    }
     componentDidMount() {
       var options = {
         enableHighAccuracy: false,
-        timeout: 5000,
+        timeout: 8000,
         maximumAge: 0
       };
       this.fetchProfileInfo();
@@ -118,7 +143,6 @@ class SecondPage extends React.Component {
       this.setState({displayCard: !this.state.displayCard});
     }
     getMeetups() {
-      console.log('we are trying to get the meetups');
       $.ajax({
         url: '/meetups',
         type: 'GET',
@@ -130,10 +154,8 @@ class SecondPage extends React.Component {
         },
         error: (err) => {
           console.log('an error is happen');
-          console.log(err);
         }
       }).done((meetups) => {
-        console.log('done');
           meetups = JSON.parse(meetups);
           this.setState({location: meetups.city});
           this.setState({events: meetups.events});
@@ -142,6 +164,7 @@ class SecondPage extends React.Component {
     }
   render() {
     return (
+      <MuiThemeProvider>
       <div>
       <div>
       <h1 style={{display: 'flex'}}>
@@ -151,7 +174,7 @@ class SecondPage extends React.Component {
       <div className="btn" to={{pathname:'/profile'}} onClick={this.onProfileClick}>{this.state.profile.username}'s profile</div>
       </h1>
       </div>
-            {this.state.displayCard ? <ProfileCard profile={this.state.profile}/> : null}
+      {this.state.displayCard ? <ProfileCard profile={this.state.profile}/> : null}
       <div className="askForZipCode">{this.state.zipcodeAsker}</div>
       <div>{this.state.zipcodebutton}</div>
       <div className="map">
@@ -160,14 +183,15 @@ class SecondPage extends React.Component {
        initialLocation={{lat: this.state.lat, lng: this.state.lon}}
        />
       </div>
-      <div style={{display: 'flex'}}>
-      {this.state.displaySeeMore ? <SeeMoreCard style={{display: 'flex', flex: 1, alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}meetup={this.state.meetup} group={this.state.group} photo={this.state.photo} description={this.state.description}/> : null}
+      <div className ="cardTest">
+      {this.state.displaySeeMore ? <SeeMoreCard saveEvent={this.saveEvent} closeButton={this.closeButton}meetup={this.state.meetup} group={this.state.group} photo={this.state.photo} date={this.state.date} description={this.state.description}/> : null}
       </div>
       </div>
       <div className="list">
       <MeetUpList events={this.state.events} seeMore={this.seeMore}/>
       </div>
       </div>
+      </MuiThemeProvider>
     );
   };
 }

@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FirstPage from './FirstPage.jsx';
 import SecondPage from './SecondPage.jsx';
+import SavedList from './SavedList.jsx';
+import SavedListEntry from './SavedListEntry.jsx';
+import CreatedList from './CreatedList.jsx';
 import Index from './Index.jsx';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
@@ -9,11 +12,26 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      profile: {}
+      profile: {},
+      myEvents: []
     }
+    this.fetchMyEvents = this.fetchMyEvents.bind(this);
+  }
+  fetchMyEvents() {
+    $.ajax({
+    url: '/userevents',
+    method: 'GET',
+    success: (data) => {
+      this.setState({
+        myEvents: JSON.parse(data.local.events)
+      })
+    },
+    error: (error) => {
+      console.log('fail safe', error)
+    }
+  });
   }
   componentDidMount() {
-      console.log('im in fetching a profile?')
       $.ajax({
       url: '/users',
       method: 'GET',
@@ -21,7 +39,7 @@ class Profile extends React.Component {
         this.setState({
           profile: data
         });
-        console.log('hello', this.state.profile);
+        this.fetchMyEvents()
       },
       error: (error) => {
         console.log('fail safe', error)
@@ -32,7 +50,7 @@ class Profile extends React.Component {
     return (
   <div>
   <h1 style={{display: 'flex'}}>
-  <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight</text>
+  <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight?</text>
   <Link className="btn" to={{pathname:'/home'}}>Home</Link>
   <Link className="btn" to={{pathname:'/logout'}}>Logout</Link>
   <Link className="btn" to={{pathname:'/profile'}}>{this.state.profile.username}'s profile</Link>
@@ -43,6 +61,11 @@ class Profile extends React.Component {
   <p>{this.state.profile.location}</p>
   <p>{this.state.profile.age}</p>
   <p>{this.state.profile.biography}</p>
+  </div>
+  <div className="list">
+  <SavedListEntry myEvents={this.state.myEvents}/>
+  </div>
+  <div>
   </div>
   </div>
 )

@@ -9,31 +9,31 @@ class SignUpFormExtended extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="input-field">
       <form action = '/signup' method='post'>
-        <label htmlFor="name">Name</label>
-        <input id="name" name="name" type="text" />
+        <label htmlFor="name"></label>
+        <input placeholder="name" name="name" type="text" />
 
-        <label htmlFor="username">Username</label>
-        <input id="username" name="username" type="text" />
+        <label htmlFor="username"></label>
+        <input placeholder="username" name="username" type="text" />
 
-        <label htmlFor="email">Email address</label>
-        <input id="email" name="email" type="email" />
+        <label htmlFor="email"></label>
+        <input placeholder="email" name="email" type="email" />
 
-        <label htmlFor="password">Password</label>
-        <input id="password" name="password" type="password" />
+        <label htmlFor="password"></label>
+        <input placeholder="password" name="password" type="password" />
 
-        <label htmlFor="age">Age</label>
-        <input id="age" name="age" type="age" />
+        <label htmlFor="age"></label>
+        <input placeholder="age" name="age" type="age" />
 
-        <label htmlFor="biography">Tell us about yourself?</label>
-        <input id="biography" name="biography" type="biography" />
+        <label htmlFor="biography"></label>
+        <input placeholder="tell us about yourself" name="biography" type="biography" />
 
-        <label htmlFor="location">Where are you from?</label>
-        <input id="location" name="location" type="location" />
+        <label htmlFor="location"></label>
+        <input placeholder="city, state" name="location" type="location" />
 
-        <label htmlFor="file">Upload an image</label>
-        <input id="image" name="image" type="file" />
+        <label></label>
+        <input placeholder="image" name="image" type="file" />
 
         <button>Create my account!</button>
       </form>

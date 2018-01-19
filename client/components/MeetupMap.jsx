@@ -35,7 +35,6 @@ class MeetupMap extends React.Component {
           title: meetup.name
         });
         markers.push(marker);
-
         const infowindow = new google.maps.InfoWindow({
           content: `<h6>${meetup.name}</h6>`,
         });

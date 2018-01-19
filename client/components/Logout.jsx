@@ -14,7 +14,7 @@ class Logout extends React.Component {
   }
   componentDidMount() {
       $.ajax({
-      url: '/logouttest',
+      url: '/logout',
       method: 'POST',
       success: (data) => {
         console.log('success',data)

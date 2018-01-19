@@ -12,13 +12,15 @@ class MapContainer extends React.Component {
           initialCenter = {this.props.initialLocation}
           zoom = {13}
           meetups={this.props.meetups}
-          {...this.props}/>
+          seeMore = {this.props.seeMore}
+          {...this.props}
+          />
       </div>
     );
   }
 }
 
 export default GoogleApiWrapper({
-  apiKey: config.GOOGLE_MAPS_API_KEY,  
+  apiKey: config.GOOGLE_MAPS_API_KEY,
   libraries:['places']
 })(MapContainer)
