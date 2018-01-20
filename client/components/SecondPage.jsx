@@ -13,6 +13,7 @@ import SignUpForm from './SignUpForm.jsx';
 import moment from 'moment';
 import MapContainer from '../components/MapContainer.jsx';
 import { Link } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {BrowserRouter, Router, Route, browserHistory, Switch, IndexRoute} from 'react-router-dom';
 const path = require('path');
@@ -178,8 +179,8 @@ class SecondPage extends React.Component {
       <div>
       <div>
       <h1 style={{display: 'flex'}}>
-      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight?</text>
-      <Link className="btn" to={{pathname:'/home'}}>Home</Link>
+      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What is going on tonight?</text>
+      <Link to={{pathname:'/home'}}>Home</Link>
       <Link className="btn" to={{pathname:'/create'}}>Create event</Link>
       <Link className="btn" to={{pathname:'/logout'}}>Logout</Link>
       <div className="btn" to={{pathname:'/profile'}} onClick={this.onProfileClick}>{this.state.profile.username}'s profile</div>
