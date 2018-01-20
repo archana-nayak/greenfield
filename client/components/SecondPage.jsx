@@ -74,11 +74,7 @@ class SecondPage extends React.Component {
           })
         }
       });
-<<<<<<< HEAD
     }
-=======
-      }
->>>>>>> added user saved events which DO NOT persist
     weKnowTheLocation (pos) {
         var crd = pos.coords;
         var thisLat = crd.latitude;
@@ -131,7 +127,6 @@ class SecondPage extends React.Component {
       this.setState({displayCard: !this.state.displayCard});
     }
     getMeetups() {
-<<<<<<< HEAD
      $.ajax({
        url: '/meetups',
        type: 'GET',
@@ -178,38 +173,14 @@ class SecondPage extends React.Component {
     });
     ;
   }
-=======
-      $.ajax({
-        url: '/meetups',
-        type: 'GET',
-        contentType: 'application/json',
-        data: {zipcode : this.state.zipcode, lat: this.state.lat, lon: this.state.lon},
-        success: (meetups) => {
-         this.setState({meetups : meetups});
-        },
-        error: (err) => {
-          console.log('an error is happen');
-        }
-      }).done((meetups) => {
-          meetups = JSON.parse(meetups);
-          this.setState({location: meetups.city});
-          this.setState({events: meetups.events});
-          });
-    }
->>>>>>> added user saved events which DO NOT persist
   render() {
     return (
       <MuiThemeProvider>
       <div>
       <div>
       <h1 style={{display: 'flex'}}>
-<<<<<<< HEAD
       <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What is going on tonight?</text>
       <Link to={{pathname:'/home'}}>Home</Link>
-=======
-      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight?</text>
-      <Link className="btn" to={{pathname:'/home'}}>Home</Link>
->>>>>>> createdEvents now show on user profile
       <Link className="btn" to={{pathname:'/create'}}>Create event</Link>
       <Link className="btn" to={{pathname:'/logout'}}>Logout</Link>
       <div className="btn" to={{pathname:'/profile'}} onClick={this.onProfileClick}>{this.state.profile.username}s profile</div>
