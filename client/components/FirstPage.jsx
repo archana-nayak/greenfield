@@ -123,12 +123,10 @@ class FirstPage extends React.Component {
       <div>{this.state.zipcodebutton}</div>
       <div className="map">
         <MapContainer meetups={this.state.events}
-        initialLocation={{lat: this.state.lat, lng: this.state.lon}} 
+        initialLocation={{lat: this.state.lat, lng: this.state.lon}}
         />
       </div>
       <div className="list">
-      <MeetUpList events={this.state.events} />
-      <ProfileCard profile={this.state.profile}/>
       </div>
       </div>
     );

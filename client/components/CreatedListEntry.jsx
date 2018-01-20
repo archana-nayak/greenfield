@@ -1,5 +1,5 @@
 import React from 'react';
-  const MeetupListEntry = function(props) {
+  const CreatedListEntry = function(props) {
     function strip(html) {
        var tmp = document.createElement("DIV");
        tmp.innerHTML = html;

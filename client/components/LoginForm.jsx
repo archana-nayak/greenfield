@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import Login from './Login.jsx';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
+import FlatButton from 'material-ui/flatButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +23,7 @@ class LoginForm extends React.Component {
   render() {
     const { username, password} = this.state;
     return (
+      <MuiThemeProvider>
       <div>
       <h1 style={{display: 'flex'}}>
       <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight?</text>
@@ -28,18 +31,17 @@ class LoginForm extends React.Component {
       <Link className="btn" to={{pathname:'/login'}}>Login</Link>
       <Link className="btn" to={{pathname:'/signup'}}>Signup</Link>
       </h1>
+      <FlatButton style={{textDecoration: 'underline'}}><Link to={{pathname:'/signup'}}>No account? Sign up here</Link></FlatButton>
+      <FlatButton style={{textDecoration: 'underline'}}><Link to={{pathname:'/home'}}>I don't wanna</Link></FlatButton>
       <form action='/auth' method='post'>
-        <label htmlFor="username">Enter your username</label>
-        <input type="text" name="username" value={username} onChange={this.onChange} />
-        <label htmlFor="password">Enter your password</label>
-        <input type="password" name="password" value={password} onChange={this.onChange} />
+        <label htmlFor="username"></label>
+        <input placeholder="Enter your username" type="text" name="username" value={username} onChange={this.onChange} />
+        <label htmlFor="password"></label>
+        <input placeholder="Enter your password" type="password" name="password" value={password} onChange={this.onChange} />
         <button>Login!</button>
-        <Link className="btn" style={{backgroundColor: 'blue'}}to={{pathname:'/signup'}}>No account? Sign up here</Link>
-        <div>
-        <Link className="btn" style={{backgroundColor: 'blue'}}to={{pathname:'/home'}}>I don't wanna</Link>
-        </div>
       </form>
       </div>
+      </MuiThemeProvider>
     );
   }
 }

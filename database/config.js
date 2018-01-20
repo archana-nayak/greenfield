@@ -26,7 +26,13 @@ knex.schema.createTableIfNotExists('users', function (table) {
    })
    .then(function() {
 });
-
+knex.schema.createTableIfNotExists('user_events', function (table) {
+     table.increments('id');
+     table.text('username');
+     table.text('events');
+   })
+   .then(function() {
+});
 var DB = require('bookshelf')(knex);
 
 module.exports.DB = DB;

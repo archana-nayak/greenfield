@@ -13,13 +13,14 @@ class Logout extends React.Component {
     }
   }
   componentDidMount() {
-      console.log('im in fetching?')
       $.ajax({
       url: '/logout',
       method: 'POST',
-      success: () => {
-        console.log('hello');
-
+      success: (data) => {
+        console.log('success',data)
+        if (typeof data.redirect == 'string'){
+            window.location = data.redirect
+      }
       },
       error: (error) => {
         console.log('fail safe', error)

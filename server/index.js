@@ -15,8 +15,8 @@ const $ = require('jquery')
 const config = require('./config.js');
 const app = express();
 require('../passport.js')(passport);
-app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser());
 app.use(session({secret: 'haha', name: 'session_id', saveUninitialized: true, resave: true, cookie: {
   maxAge: 2419200000 }}));
@@ -120,7 +120,7 @@ app.post('/signup', function(req, res, next) {
     var usernamePromise = new Model.User({ username: user.username }).fetch();
     return usernamePromise.then(function(model) {
         if (model) {
-            res.render('signup', { title: 'signup', errorMessage: 'username already exists' });
+            res.render('/signup', { title: 'signup', errorMessage: 'username already exists' });
         } else {
             var email = user.email
             var password = user.password;
@@ -144,10 +144,56 @@ app.post('/signup', function(req, res, next) {
         }
     });
 });
+app.post('/userevents', function(req,res){
+  let username = req.user.local.username;
+  const meetup = req.body;
+  let result = [];
+  var eventPromise = new Model.UserEvents({ username: req.user.local.username }).fetch();
+  return eventPromise.then(function(model) {
+    if(model){
+      res.sendStatus(400);
+      // if (model) {
+      //   result.push(model.attributes.events);
+      //   result.push(meetup);
+      //   console.log(result);
+      //   console.log('hihihihihihi', result)
+      //   username = req.user.local.username
+      //   var addEvent = new Model.UserEvents({
+      //     username: username,
+      //     events: result
+      //   });
+        // addEvent.save({}, {method: 'insert'}).then(function(model) {
+        //     res.sendStatus(201);
+        // });
+      } else {
+          result.push(JSON.stringify(meetup, null, 2));
+          console.log('heyrerye', result)
+          username = req.user.local.username
+          let events = meetup;
+          var addEvent = new Model.UserEvents({
+            username: username,
+            events: meetup
+          });
+          addEvent.save({}, {method: 'insert'}).then(function(model) {
+              res.sendStatus(201);
+          });
+      }
+  });
+});
+app.get('/userevents', function(req, res){
+  Model.getUserEvents(req.user.local.username, function(err, events) {
+    if(err){
+      console.log(err);
+    } else {
+       console.log(events.local.events)
+      res.send(events);
+    }
+    });
+});
 app.post('/logout', function(req, res){
-  res.setHeader("Content-Type", "text/html");
-  req.logout();
+  //res.setHeader("Content-Type", "text/html");
   req.session.destroy();
+  req.logout();
   res.send({redirect: '/'});
 });
 app.listen(3000, function(){

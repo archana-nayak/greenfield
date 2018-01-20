@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from '../components/Index.jsx';
 import SignUpFormSimple from '../components/SignUpFormSimple.jsx';
 import SignUpFormExtended from '../components/SignUpFormExtended.jsx';
+import FlatButton from 'material-ui/flatButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 class SignUpForm extends React.Component {
@@ -24,18 +26,19 @@ class SignUpForm extends React.Component {
   }
   render() {
    return (
+     <MuiThemeProvider>
      <div>
      <h1 style={{display: 'flex'}}>
-     <img src='https://n6-img-fp.akamaized.net/free-icon/telegram-logo_318-102687.jpg?size=338c&ext=jpg' width="30" height="50"/>
-     <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>our app</text>
+     <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight?</text>
      <Link className="btn" to={{pathname:'/'}}>Home</Link>
      <Link className="btn" to={{pathname:'/Login'}}>Login</Link>
      <Link className="btn" to={{pathname:'/Signup'}}>Signup</Link>
      </h1>
-     <button className="btn" style={{margin: 'auto'}}onClick={this.handleClick}> {this.state.displayText ? 'Add more information' : 'Simple signup'}</button>
-     <Link className="btn" to={{pathname:'/Login'}}>I have an account!</Link>
+     <FlatButton style={{textDecoration: 'underline'}} onClick={this.handleClick}> {this.state.displayText ? 'Add more information' : 'Simple signup'}</FlatButton>
+     <FlatButton style={{textDecoration: 'underline'}}><Link to={{pathname:'/Login'}}>I have an account!</Link></FlatButton>
      {this.state.showExtended ? <SignUpFormExtended/>  : <SignUpFormSimple/>}
      </div>
+     </MuiThemeProvider>
    );
  }
 }
