@@ -14,6 +14,7 @@ const fs = require('fs');
 const $ = require('jquery')
 const config = require('./config.js');
 const app = express();
+const categories = require('../assets/categories.json');
 require('../passport.js')(passport);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -65,7 +66,6 @@ const getMeetupsByLatLon = (lat, lon, callback) => {
       callback(null, body);
     }
   })
-
 };
 const getLatLon = (zipcode, callback) => {
   var options = {
@@ -103,7 +103,8 @@ app.get('/meetups', function(req, res){
         if (error) {
           res.status(500).json(error);
         }
-        res.json(meetups);
+        // console.log('categories ',categories.results);
+        res.send({meetups: meetups, categories: categories.results});//meetups);
       });
      });
   } else {
@@ -111,7 +112,7 @@ app.get('/meetups', function(req, res){
         if (error) {
           res.status(500).json(error);
         }
-        res.json(meetups);
+        res.send({meetups: meetups, categories: categories.results});//meetups);
       });
     };
 });
@@ -196,6 +197,41 @@ app.post('/logout', function(req, res){
   req.logout();
   res.send({redirect: '/'});
 });
+
+app.get('/meetups/categories', function(req, res) {
+  var options = {
+    categoryId: req.param('categoryId'),
+    radius: req.param('radius'),
+    lat: req.param('lat'),
+    lon: req.param('lon'),
+    startdate: req.param('startDate')
+  };
+  getMeetupsBySearchFields(options, (error, meetups) => {
+    if (error) {
+      res.send(error);
+    }
+    res.status(200).send({meetups: meetups});
+  });
+});
+
+const getMeetupsBySearchFields = (searchOptions, callback) => {
+  let options = {
+    url: `https://api.meetup.com/2/open_events?fields=group_photo\
+    &lon=${searchOptions.lon}&limited_events=False&photo-host=public\
+    &page=20&time=${searchOptions.startdate}%2C&radius=${searchOptions.radius}\
+    &category=${searchOptions.categoryId}&lat=${searchOptions.lat}&desc=False&status=upcoming&key=${config.MEETINGS_API_KEY}`,
+    headers: {
+      'User-Agent': 'request'
+    }
+  };
+  request(options, (err,response, body) => {
+    if (err) {
+      callback(err, null);
+    }
+    callback(null, body);
+  });
+};
+
 app.listen(3000, function(){
   console.log('listening on port 3000!')
 });
