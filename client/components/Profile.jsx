@@ -107,7 +107,7 @@ class Profile extends React.Component {
     <MuiThemeProvider>
   <div>
   <h1 style={{display: 'flex'}}>
-  <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight?</text>
+  <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What is going on tonight?</text>
   <Link className="btn" to={{pathname:'/home'}}>Home</Link>
   <Link className="btn" to={{pathname:'/logout'}}>Logout</Link>
   <Link className="btn" to={{pathname:'/profile'}}>{this.state.profile.username}'s profile</Link>

@@ -203,8 +203,13 @@ class SecondPage extends React.Component {
       <div>
       <div>
       <h1 style={{display: 'flex'}}>
+<<<<<<< HEAD
       <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What is going on tonight?</text>
       <Link to={{pathname:'/home'}}>Home</Link>
+=======
+      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight?</text>
+      <Link className="btn" to={{pathname:'/home'}}>Home</Link>
+>>>>>>> createdEvents now show on user profile
       <Link className="btn" to={{pathname:'/create'}}>Create event</Link>
       <Link className="btn" to={{pathname:'/logout'}}>Logout</Link>
       <div className="btn" to={{pathname:'/profile'}} onClick={this.onProfileClick}>{this.state.profile.username}s profile</div>
