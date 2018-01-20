@@ -67,13 +67,14 @@ class SeeMoreCard extends React.Component {
           return null;
    }
  })()
-}
-</CardText>
+} </CardText>
+  <CardText>
   {this.props.group.localized_location ? 'Group Location: ' + this.props.group.localized_location : null }
   </CardText>
   <CardText>
   Description: {this.state.showDescription ? this.props.description : this.props.description.slice(0,35) + '..'}
   <FlatButton style={{textDecoration: 'underline'}}onClick={this.handleClicker}>{this.state.showText ? 'See more': 'See less'}</FlatButton>
+  </CardText>
   </CardText>
   <FlatButton style={{textDecoration: 'underline'}} href={this.props.meetup.link ? this.props.meetup.link + ' ' : this.props.meetup.event_url + ' '}target="_blank">View on meetup.com</FlatButton>
   <FlatButton style={{textDecoration: 'underline'}} onClick={this.props.saveEvent}>Save to my favorite events</FlatButton>
