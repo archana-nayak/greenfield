@@ -14,7 +14,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Search from './Search.jsx';
 import MapContainer from '../components/MapContainer.jsx';
 import { Link } from 'react-router-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {BrowserRouter, Router, Route, browserHistory, Switch, IndexRoute} from 'react-router-dom';
 const path = require('path');
 class SecondPage extends React.Component {
