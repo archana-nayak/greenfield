@@ -28,7 +28,6 @@
     "express-session": "^1.15.6",
     "flash": "^1.1.0",
     "google-maps-react": "^1.1.2",
-    "images-upload-middleware": "^1.1.1",
     "jquery": "^3.2.1",
     "knex": "^0.14.2",
     "material-ui": "^0.20.0",
