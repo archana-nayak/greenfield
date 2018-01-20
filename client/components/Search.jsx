@@ -78,7 +78,7 @@ class Search extends React.Component {
         })}
         </DropDownMenu>
         </span>
-        <span className="radius">
+        <div className="radius">
           <DropDownMenu
             value={this.state.radius}
             onChange={this.handleRadiusChange}
@@ -90,7 +90,7 @@ class Search extends React.Component {
             <MenuItem primaryText="10 miles" value={3}/>
             <MenuItem primaryText="25 miles" value={4}/>
           </DropDownMenu>
-        </span>
+        </div>
         <span className="calendar">
           <DatePicker
             onChange={this.handleDateChange}

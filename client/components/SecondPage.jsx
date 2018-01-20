@@ -183,7 +183,7 @@ class SecondPage extends React.Component {
       <Link to={{pathname:'/home'}}>Home</Link>
       <Link className="btn" to={{pathname:'/create'}}>Create event</Link>
       <Link className="btn" to={{pathname:'/logout'}}>Logout</Link>
-      <div className="btn" to={{pathname:'/profile'}} onClick={this.onProfileClick}>{this.state.profile.username}'s profile</div>
+      <div className="btn" to={{pathname:'/profile'}} onClick={this.onProfileClick}>{this.state.profile.username}s profile</div>
       </h1>
       </div>
       {this.state.displayCard ? <ProfileCard profile={this.state.profile}/> : null}
@@ -200,8 +200,8 @@ class SecondPage extends React.Component {
       </div>
       </div>
       <div className="list">
-      <MeetUpList events={this.state.events} seeMore={this.seeMore}/>
       <Search categories={this.state.categories} handleSearch={this.getMeetupsByCategory}/>
+      <MeetUpList events={this.state.events} seeMore={this.seeMore}/>
       </div>
       </div>
       </MuiThemeProvider>
