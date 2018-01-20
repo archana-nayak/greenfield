@@ -7,7 +7,6 @@ class MeetupMap extends React.Component {
       this.loadMap();
     }
   }
-
   loadMap() {
     if (this.props && this.props.google) {
       const {google} = this.props;

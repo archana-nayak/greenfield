@@ -1,16 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FirstPage from './FirstPage.jsx';
-import Index from './Index.jsx';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 class Logout extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      items: []
-    }
   }
   componentDidMount() {
       $.ajax({

@@ -5,6 +5,7 @@ import LoginForm from './LoginForm.jsx';
 import FirstPage from './FirstPage.jsx';
 import SecondPage from './SecondPage.jsx';
 import SignUpForm from './SignUpForm.jsx';
+import CreateEvent from './CreateEvent.jsx';
 import Login from './Login.jsx';
 import Logout from './Logout.jsx';
 import Profile from './Profile.jsx';
@@ -17,6 +18,7 @@ ReactDOM.render(
       <Route exact path="/login" component={LoginForm}/>
       <Route path="/profile" component={Profile}/>
       <Route path="/logout" component={Logout}/>
+      <Route exact path="/create" component={CreateEvent}/>
       </Switch>
       </Router>,document.getElementById('app')
 );

@@ -1,12 +1,6 @@
 import React from 'react';
   const CreatedListEntry = function(props) {
-    function strip(html) {
-       var tmp = document.createElement("DIV");
-       tmp.innerHTML = html;
-       return tmp.textContent;
-    }
-    var desc = strip(props.event.description).slice(0,150) + '...';
-    return <div className="mappedEvents"><a href={props.event.link} target="_blank"><li>{props.event.name}</li></a>
-    <div className="eventDescription">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{desc}</div><button onClick={() => {props.seeMore(props.event.name)}}>See More</button><hr></hr></div>
+    return <div className="mappedEvents"><h8>{props.event.event_name}</h8>
+    <div className="eventDescription">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{props.event.event_description}</div><div>Date:{props.event.event_date}</div><div>Time:{props.event.event_time}</div><hr></hr></div>
   }
- export default MeetupListEntry;
+ export default CreatedListEntry;

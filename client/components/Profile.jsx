@@ -1,45 +1,101 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FirstPage from './FirstPage.jsx';
 import SecondPage from './SecondPage.jsx';
 import SavedList from './SavedList.jsx';
+import SeeMoreCard from './SeeMoreCard.jsx';
 import SavedListEntry from './SavedListEntry.jsx';
 import CreatedList from './CreatedList.jsx';
-import Index from './Index.jsx';
 import $ from 'jquery';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       profile: {},
-      myEvents: []
+      myEvents: window.currentEvents || null,
+      hasEvent: true,
+      displaySeeMore: false,
+      meetup: [],
+      description: '',
+      group: '',
+      photo: '',
+      date: '',
+      eventData: [],
     }
-    this.fetchMyEvents = this.fetchMyEvents.bind(this);
+    this.closeButton = this.closeButton.bind(this);
+    this.storageArray = this.storageArray.bind(this);
+    this.seeMore = this.seeMore.bind(this);
+    this.strip = this.strip.bind(this);
+    this.fetchPostedEvent = this.fetchPostedEvent.bind(this);
   }
-  fetchMyEvents() {
+  fetchPostedEvent() {
+    console.log('fetch posted event function is firing!');
     $.ajax({
-    url: '/userevents',
-    method: 'GET',
-    success: (data) => {
-      this.setState({
-        myEvents: JSON.parse(data.local.events)
-      })
-    },
-    error: (error) => {
-      console.log('fail safe', error)
-    }
-  });
+      method: 'GET',
+      url: '/events',
+      dataType: 'json',
+      success: (modelData) => {
+        console.log('fetchPostedEvent fired successfully', modelData[0]);
+        this.setState({
+          eventData: modelData[0]
+        });
+      },
+      error: (error) => {
+        console.log('Failed to GET events', error);
+      }
+    });
+  }
+  storageArray() {
+    $.ajax({
+      url: '/userevents',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(this.state.myEvents),
+      success: () => {
+      },
+      error: (err) => {
+        console.log('an error is happening', err);
+      }
+    })
+  }
+  closeButton() {
+    this.setState({
+      displaySeeMore: !this.state.displaySeeMore
+    })
+  }
+  componentWillUnmount () {
+    this.storageArray();
+  }
+  strip(html) {
+       var tmp = document.createElement("DIV");
+       tmp.innerHTML = html;
+       return tmp.textContent;
+  }
+  seeMore(marker) {
+    this.state.myEvents.map((event) => {
+      if(event.name === marker){
+        this.setState({
+          meetup: event,
+          description: this.strip(event.description),
+          group: event.group,
+          photo: event.group.photo ? event.group.photo : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS5QBzAjXODH-QDaa6tVLGT10ZHa8aiJzgKL_n4F-a_H9lnuA-fQ',
+          displaySeeMore: true,
+          date: moment(event.local_date, "YYYY-MM-DD").format("MM-DD-YYYY").split('-').join('/')
+        })
+      }
+    });
   }
   componentDidMount() {
+    this.fetchPostedEvent();
       $.ajax({
       url: '/users',
       method: 'GET',
       success: (data) => {
         this.setState({
-          profile: data
+          profile: data,
         });
-        this.fetchMyEvents()
       },
       error: (error) => {
         console.log('fail safe', error)
@@ -48,6 +104,7 @@ class Profile extends React.Component {
     }
   render() {
     return (
+    <MuiThemeProvider>
   <div>
   <h1 style={{display: 'flex'}}>
   <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight?</text>
@@ -62,14 +119,22 @@ class Profile extends React.Component {
   <p>{this.state.profile.age}</p>
   <p>{this.state.profile.biography}</p>
   </div>
+  <div className="map" style={{width: '25%'}}>
+  <div className ="cardTest">
+  {this.state.displaySeeMore ? <SeeMoreCard closeButton={this.closeButton}meetup={this.state.meetup} group={this.state.group} photo={this.state.photo} date={this.state.date} description={this.state.description}/> : null}
+  </div>
+  </div>
   <div className="list">
-  <SavedListEntry myEvents={this.state.myEvents}/>
+  {this.state.eventData.length > 0 ? <CreatedList createdEvents={this.state.eventData}/> : null}
+  </div>
+  <div className="list">
+  {this.state.myEvents.length > 0 ? <SavedList myEvents={this.state.myEvents} seeMore={this.seeMore}/> : null}
   </div>
   <div>
   </div>
   </div>
+    </MuiThemeProvider>
 )
 }
 }
-
 export default Profile;

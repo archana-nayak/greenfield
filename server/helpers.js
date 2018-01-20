@@ -2,7 +2,7 @@ const request = require('request');
 const fs = require('fs');
 const path = require('path');
 const config = require('./config.js');
-
+const server = require('./index.js')
 const getMeetupsByLatLon = (lat, lon, callback) => {
   console.log(`we are looking up the meetups near ${lat} and ${lon}`);
   var options = {url : `http://api.meetup.com//find/upcoming_events?\

@@ -9,9 +9,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      items: []
-    }
   }
   render() {
     return (
