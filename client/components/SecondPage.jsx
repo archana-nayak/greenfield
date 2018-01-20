@@ -74,7 +74,11 @@ class SecondPage extends React.Component {
           })
         }
       });
+<<<<<<< HEAD
     }
+=======
+      }
+>>>>>>> added user saved events which DO NOT persist
     weKnowTheLocation (pos) {
         var crd = pos.coords;
         var thisLat = crd.latitude;
@@ -127,6 +131,7 @@ class SecondPage extends React.Component {
       this.setState({displayCard: !this.state.displayCard});
     }
     getMeetups() {
+<<<<<<< HEAD
      $.ajax({
        url: '/meetups',
        type: 'GET',
@@ -173,6 +178,25 @@ class SecondPage extends React.Component {
     });
     ;
   }
+=======
+      $.ajax({
+        url: '/meetups',
+        type: 'GET',
+        contentType: 'application/json',
+        data: {zipcode : this.state.zipcode, lat: this.state.lat, lon: this.state.lon},
+        success: (meetups) => {
+         this.setState({meetups : meetups});
+        },
+        error: (err) => {
+          console.log('an error is happen');
+        }
+      }).done((meetups) => {
+          meetups = JSON.parse(meetups);
+          this.setState({location: meetups.city});
+          this.setState({events: meetups.events});
+          });
+    }
+>>>>>>> added user saved events which DO NOT persist
   render() {
     return (
       <MuiThemeProvider>
