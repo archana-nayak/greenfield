@@ -9,12 +9,9 @@ import ProfileCard from './ProfileCard.jsx';
 import SeeMoreCard from './SeeMoreCard.jsx';
 import LoginForm from './LoginForm.jsx';
 import SignUpForm from './SignUpForm.jsx';
-<<<<<<< c5f5c7c59e70b9f52e1bd6fc64c66f41a0b912b6
 import moment from 'moment';
-=======
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Search from './Search.jsx';
->>>>>>> Add search component and associated functions to main page
 import MapContainer from '../components/MapContainer.jsx';
 import { Link } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -41,11 +38,9 @@ class SecondPage extends React.Component {
         description: '',
         displayCard: false,
         displaySeeMore: false,
-<<<<<<< c5f5c7c59e70b9f52e1bd6fc64c66f41a0b912b6
-        date: ''
-=======
+        date: '',
         categories: []
->>>>>>> Add search component and associated functions to main page
+
       }
       this.saveEvent = this.saveEvent.bind(this);
       this.closeButton = this.closeButton.bind(this);
@@ -204,11 +199,7 @@ class SecondPage extends React.Component {
     
   render() {
     return (
-<<<<<<< c5f5c7c59e70b9f52e1bd6fc64c66f41a0b912b6
       <MuiThemeProvider>
-=======
-      <MuiThemeProvider> 
->>>>>>> Add search component and associated functions to main page
       <div>
       <div>
       <h1 style={{display: 'flex'}}>
@@ -236,11 +227,7 @@ class SecondPage extends React.Component {
       <MeetUpList events={this.state.events} seeMore={this.seeMore}/>
       </div>
       </div>
-<<<<<<< c5f5c7c59e70b9f52e1bd6fc64c66f41a0b912b6
       </MuiThemeProvider>
-=======
-      </MuiThemeProvider> 
->>>>>>> Add search component and associated functions to main page
     );
   };
 }
