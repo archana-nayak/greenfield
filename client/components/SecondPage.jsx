@@ -10,9 +10,10 @@ import SeeMoreCard from './SeeMoreCard.jsx';
 import LoginForm from './LoginForm.jsx';
 import SignUpForm from './SignUpForm.jsx';
 import moment from 'moment';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Search from './Search.jsx';
 import MapContainer from '../components/MapContainer.jsx';
 import { Link } from 'react-router-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {BrowserRouter, Router, Route, browserHistory, Switch, IndexRoute} from 'react-router-dom';
 const path = require('path');
 class SecondPage extends React.Component {
@@ -36,7 +37,9 @@ class SecondPage extends React.Component {
         description: '',
         displayCard: false,
         displaySeeMore: false,
-        date: ''
+        date: '',
+        categories: []
+
       }
       this.saveEvent = this.saveEvent.bind(this);
       this.closeButton = this.closeButton.bind(this);
@@ -50,6 +53,7 @@ class SecondPage extends React.Component {
       this.displayList = this.displayList.bind(this);
       this.id = 0;
       this.seeMore = this.seeMore.bind(this);
+      this.getMeetupsByCategory = this.getMeetupsByCategory.bind(this);
     }
     strip(html) {
          var tmp = document.createElement("DIV");
@@ -148,20 +152,50 @@ class SecondPage extends React.Component {
         type: 'GET',
         contentType: 'application/json',
         data: {zipcode : this.state.zipcode, lat: this.state.lat, lon: this.state.lon},
-        success: (meetups) => {
+        success: (data) => { 
           console.log('successsssssss!');
-         this.setState({meetups : meetups});
+         this.setState({meetups : JSON.parse(data.meetups)});
         },
         error: (err) => {
           console.log('an error is happen');
         }
-      }).done((meetups) => {
-          meetups = JSON.parse(meetups);
-          this.setState({location: meetups.city});
-          this.setState({events: meetups.events});
-          console.log(this.state.photo);});
-          this.displayList();
+      }).done((data) => { 
+        console.log('done');
+        var meetups = data.meetups;
+        meetups = JSON.parse(meetups);
+        var categories = data.categories;
+        this.setState({
+          location: meetups.city,
+          events: meetups.events,
+          categories: categories
+        })
+        console.log(this.state.photo);});
+        this.displayList();
     }
+
+  getMeetupsByCategory(searchOptions){
+    searchOptions.lat = this.state.lat;
+    searchOptions.lon = this.state.lon;
+    $.ajax({
+      url: '/meetups/categories',
+      type: "GET",
+      contentType: 'application/json',
+      data: searchOptions,
+      success: (data) => {
+    
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+    .done((data) => {
+      var meetups = data.meetups;
+      meetups = JSON.parse(meetups).results;
+      this.setState({events: meetups});
+    });
+    ;
+  }  
+    
   render() {
     return (
       <MuiThemeProvider>
@@ -179,7 +213,7 @@ class SecondPage extends React.Component {
       <div>{this.state.zipcodebutton}</div>
       <div className="map">
       <div>
-       <MapContainer meetups={this.state.events} seeMore={this.seeMore}
+      <MapContainer meetups={this.state.events} seeMore={this.seeMore}
        initialLocation={{lat: this.state.lat, lng: this.state.lon}}
        />
       </div>
@@ -188,6 +222,7 @@ class SecondPage extends React.Component {
       </div>
       </div>
       <div className="list">
+      <Search categories={this.state.categories} handleSearch={this.getMeetupsByCategory}/>
       <MeetUpList events={this.state.events} seeMore={this.seeMore}/>
       </div>
       </div>

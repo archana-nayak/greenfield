@@ -1,7 +1,7 @@
-config.js
 /server/config.js
 /server/localhost.crt
 /server/localhost.key
+config.js
 ### node etc ###
 
 # Logs
