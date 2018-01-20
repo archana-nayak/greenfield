@@ -39,7 +39,7 @@ class MeetupMap extends React.Component {
           content: `<h6>${meetup.name}</h6>`,
         });
         marker.addListener('click', () => {
-          this.props.seeMore(marker.title);
+          // this.props.seeMore(marker.title);
           infowindow.open(this.map, marker);
           setTimeout(() => { infowindow.close(); }, 5000);
         });
