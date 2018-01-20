@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import FlatButton from 'material-ui/flatbutton';
+import AppBar from 'material-ui/AppBar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 const EventForm = (props) => {
   return (
+    <MuiThemeProvider>
     <div>
-        <h1 style={{display: 'flex'}}>
-          <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What is going on tonight?</text>
-          <Link className="btn" to={{pathname:'/Home'}}>Home</Link>
-          <Link className="btn" to={{pathname:'/Logout'}}>Logout</Link>
-          <Link className="btn" to={{pathname:'/Profile'}}>My Profile</Link>
-        </h1>
+      <AppBar title={<span style={{backgroundColor: '#f47023'}}>MINGLR</span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
+      <FlatButton primary={true}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>
+      <FlatButton ><Link to={{pathname:'/create'}}>Create event</Link></FlatButton>
+      <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
+      <FlatButton ><Link to={{pathname:'/profile'}}>Profile</Link></FlatButton>
+      </AppBar>
         <div className="eventCreation">
-          <h2 style={{textAlign: 'center'}}>Create an Event</h2>
+          <h2 style={{textAlign: 'center', color: 'black'}}>Create an Event</h2>
           <br />
           <form action='/events' method='post'>
               <input className="eventName" placeholder="Enter event name" name="eventName" type="text" />
@@ -25,6 +29,7 @@ const EventForm = (props) => {
           </form>
         </div>
       </div>
+      </MuiThemeProvider>
   )
 }
 export default EventForm;

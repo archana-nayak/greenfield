@@ -4,7 +4,8 @@ import App from '../components/Index.jsx';
 import SignUpFormSimple from '../components/SignUpFormSimple.jsx';
 import SignUpFormExtended from '../components/SignUpFormExtended.jsx';
 import FlatButton from 'material-ui/flatButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 class SignUpForm extends React.Component {
@@ -28,14 +29,14 @@ class SignUpForm extends React.Component {
    return (
      <MuiThemeProvider>
      <div>
-     <h1 style={{display: 'flex'}}>
-     <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight?</text>
-     <Link className="btn" to={{pathname:'/'}}>Home</Link>
-     <Link className="btn" to={{pathname:'/Login'}}>Login</Link>
-     <Link className="btn" to={{pathname:'/Signup'}}>Signup</Link>
-     </h1>
-     <FlatButton style={{textDecoration: 'underline'}} onClick={this.handleClick}> {this.state.displayText ? 'Add more information' : 'Simple signup'}</FlatButton>
-     <FlatButton style={{textDecoration: 'underline'}}><Link to={{pathname:'/Login'}}>I have an account!</Link></FlatButton>
+     <AppBar title={<span style={{backgroundColor: '#f47023'}}>MINGLR</span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
+     <FlatButton primary={true}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>
+     <FlatButton ><Link to={{pathname:'/create'}}>Create event</Link></FlatButton>
+     <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
+     <FlatButton ><div to={{pathname:'/profile'}} onClick={this.onProfileClick}>Profile</div></FlatButton>
+     </AppBar>
+          <FlatButton fullWidth={true} style={{textDecoration: 'underline'}}><Link to={{pathname:'/Login'}}>I have an account!</Link></FlatButton>
+     <FlatButton fullWidth={true} style={{textDecoration: 'underline'}} onClick={this.handleClick}> {this.state.displayText ? 'Add more information' : 'Simple signup'}</FlatButton>
      {this.state.showExtended ? <SignUpFormExtended/>  : <SignUpFormSimple/>}
      </div>
      </MuiThemeProvider>
