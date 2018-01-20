@@ -34,10 +34,9 @@ class LoginForm extends React.Component {
       <FlatButton style={{textDecoration: 'underline'}}><Link to={{pathname:'/signup'}}>No account? Sign up here</Link></FlatButton>
       <FlatButton style={{textDecoration: 'underline'}}><Link to={{pathname:'/home'}}>I don't wanna</Link></FlatButton>
       <form action='/auth' method='post'>
-        <label htmlFor="username"></label>
         <input placeholder="Enter your username" type="text" name="username" value={username} onChange={this.onChange} />
-        <label htmlFor="password"></label>
         <input placeholder="Enter your password" type="password" name="password" value={password} onChange={this.onChange} />
+        <br />
         <button>Login!</button>
       </form>
       </div>

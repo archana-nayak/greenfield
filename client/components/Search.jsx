@@ -76,9 +76,9 @@ class Search extends React.Component {
         {categories.map((category, index) => {
           return <MenuItem primaryText={category.name} value={index} key={category.id}/>
         })}
-        </DropDownMenu> 
+        </DropDownMenu>
         </span>
-        <span className="radius">
+        <div className="radius">
           <DropDownMenu
             value={this.state.radius}
             onChange={this.handleRadiusChange}
@@ -90,16 +90,16 @@ class Search extends React.Component {
             <MenuItem primaryText="10 miles" value={3}/>
             <MenuItem primaryText="25 miles" value={4}/>
           </DropDownMenu>
-        </span>
+        </div>
         <span className="calendar">
           <DatePicker
-            onChange={this.handleDateChange}  
-            value={this.state.startDate} 
+            onChange={this.handleDateChange}
+            value={this.state.startDate}
             hintText="Look By Date"
           />
         </span>
         <span>
-          <RaisedButton label="Search" onClick={this.search}/>    
+          <RaisedButton label="Search" onClick={this.search}/>
         </span>
       </div>
     );

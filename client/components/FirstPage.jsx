@@ -35,14 +35,9 @@ class FirstPage extends React.Component {
 
     displayList () {
       console.log('we are trying to display the list');
-
     };
     weKnowTheLocation (pos) {
         var crd = pos.coords;
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
         var thisLat = crd.latitude;
         var thisLon = crd.longitude;
         this.setState({lat: thisLat});
@@ -89,7 +84,6 @@ class FirstPage extends React.Component {
     }
 
     getMeetups() {
-      console.log('we are trying to get the meetups');
       $.ajax({
         url: '/meetups',
         type: 'GET',
@@ -99,11 +93,9 @@ class FirstPage extends React.Component {
          this.setState({meetups : meetups});
         },
         error: (err) => {
-          console.log('an error is happen');
-          console.log(err);
+          console.log('an error is happening', err);
         }
       }).done((meetups) => {
-        console.log('done');
           meetups = JSON.parse(meetups);
           this.setState({location: meetups.city});
           this.setState({events: meetups.events});
@@ -127,6 +119,8 @@ class FirstPage extends React.Component {
         />
       </div>
       <div className="list">
+      <MeetUpList events={this.state.events} />
+      <ProfileCard profile={this.state.profile}/>
       </div>
       </div>
     );

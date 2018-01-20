@@ -5,8 +5,8 @@ import React from 'react';
        tmp.innerHTML = html;
        return tmp.textContent;
     }
-    var desc = strip(props.myEvents.description).slice(0,150) + '...';
-    return <div className="mappedEvents"><a href={props.myEvents.link} target="_blank"><li>{props.myEvents.name}</li></a>
-    <div className="eventDescription">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{desc}</div><hr></hr></div>
+    var desc = strip(props.event.description).slice(0,150) + '...';
+    return <div className="mappedEvents"><a href={props.event.link} target="_blank"><li>{props.event.name}</li></a>
+    <div className="eventDescription">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{desc}</div><button onClick={() => {props.seeMore(props.event.name)}}>See more</button><hr></hr></div>
   }
  export default SavedListEntry;

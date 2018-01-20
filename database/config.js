@@ -9,7 +9,19 @@ var knex = require('knex')({
     charset  : 'utf8'
   }
 });
-    // connect with database selected
+knex.schema.createTableIfNotExists('userCreatedEvents', function (table) {
+  table.integer('userID');
+  table.string('event_name');
+  table.string('event_location');
+  table.string('event_topic');
+  table.string('event_date');
+  table.string('event_time');
+  table.increments('event_id');
+  table.string('username');
+  table.string('event_description');
+})
+.then(function() {
+});
 knex.schema.createTableIfNotExists('users', function (table) {
      table.string('username');
      table.string('password');

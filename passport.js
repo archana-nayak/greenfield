@@ -18,8 +18,6 @@ module.exports = function(passport) {
         const hash = bcrypt.hashSync(password, 10);
         new Model.User({username: username}).fetch().then(function(data) {
             var user = data;
-            let sessionID = user.attributes.session_id;
-            console.log('hi user', sessionID)
             if (user === null) {
                 return done(null, false, { message: 'Invalid username or password' });
             } else {
