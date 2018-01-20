@@ -223,7 +223,7 @@ class SecondPage extends React.Component {
       <div>{this.state.zipcodebutton}</div>
       <div className="map">
       <div>
-       <MapContainer meetups={this.state.events} seeMore={this.seeMore}
+      <MapContainer meetups={this.state.events} seeMore={this.seeMore}
        initialLocation={{lat: this.state.lat, lng: this.state.lon}}
        />
       </div>
@@ -233,10 +233,7 @@ class SecondPage extends React.Component {
       </div>
       <div className="list">
       <Search categories={this.state.categories} handleSearch={this.getMeetupsByCategory}/>
-
       <MeetUpList events={this.state.events} seeMore={this.seeMore}/>
-      </div>
-      <div>
       </div>
       </div>
 <<<<<<< c5f5c7c59e70b9f52e1bd6fc64c66f41a0b912b6
