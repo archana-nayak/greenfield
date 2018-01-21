@@ -76,9 +76,9 @@ class SeeMoreCard extends React.Component {
   <FlatButton style={{textDecoration: 'underline'}}onClick={this.handleClicker}>{this.state.showText ? 'See more': 'See less'}</FlatButton>
   </CardText>
   </CardText>
-  <FlatButton style={{textDecoration: 'underline'}} href={this.props.meetup.link ? this.props.meetup.link : this.props.meetup.event_url + ' '}target="_blank">View on meetup.com </FlatButton>
-  <FlatButton style={{textDecoration: 'underline'}} onClick={this.props.saveEvent}>Save to my favorite events </FlatButton>
-  <FlatButton className="flatButton" style={{textDecoration: 'underline'}} onClick={this.props.closeButton}>Close this box </FlatButton>
+  <FlatButton fullWidth={true} style={{textDecoration: 'underline'}} href={this.props.meetup.link ? this.props.meetup.link : this.props.meetup.event_url + ' '}target="_blank">View on meetup.com </FlatButton>
+  <FlatButton fullWidth={true} style={{textDecoration: 'underline'}} onClick={this.props.saveEvent}>Save to my favorite events </FlatButton>
+  <FlatButton fullWidth={true} style={{textDecoration: 'underline'}} onClick={this.props.closeButton}>Close this box </FlatButton>
   </Card>
   </div>
 );

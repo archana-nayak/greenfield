@@ -27,10 +27,6 @@ class LoginForm extends React.Component {
       <MuiThemeProvider>
       <div>
       <AppBar title={<span style={{backgroundColor: '#f47023'}}><img src='../minglr.gif'/></span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
-      <FlatButton primary={true}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>
-      <FlatButton ><Link to={{pathname:'/create'}}>Create event</Link></FlatButton>
-      <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
-      <FlatButton ><div to={{pathname:'/profile'}} onClick={this.onProfileClick}>Profile</div></FlatButton>
       </AppBar>
       <FlatButton fullWidth={true}style={{textDecoration: 'underline'}}><Link to={{pathname:'/signup'}}>No account? Sign up here</Link></FlatButton>
       <FlatButton fullWidth={true}style={{textDecoration: 'underline'}}><Link to={{pathname:'/home'}}>I don't wanna</Link></FlatButton>

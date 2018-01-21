@@ -20,7 +20,7 @@ class Login extends React.Component {
       <FlatButton primary={true}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>
       <FlatButton ><Link to={{pathname:'/create'}}>Create event</Link></FlatButton>
       <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
-      <FlatButton ><div to={{pathname:'/profile'}} onClick={this.onProfileClick}>Profile</div></FlatButton>
+      <FlatButton ><Link to={{pathname:'/profile'}}>Profile</Link></FlatButton>
       </AppBar>
       </div>
       </MuiThemeProvider>
