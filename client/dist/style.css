@@ -3,7 +3,7 @@ body {
   margin: 0px;
   padding: 0px;
   top: 0px;
-  background: #fbf9f7;
+  background: #fefefe;
 }
 .listEntryClass {
   font-weight: 600;
@@ -18,7 +18,6 @@ a {
 input {
   margin: auto;
   width: 50%;
-  height: 20%;
   display: block;
 }
 button {
@@ -67,6 +66,9 @@ li:hover {
   text-decoration: underline;
   background-color: blue;
 }
+.app-bar {
+  height: 100%;
+}
 a:hover {
   text-decoration: none;
   color: black;
@@ -94,7 +96,7 @@ ul {
   margin-top: 0px;
   display: inline-block;
   list-style-type: none;
-  background: #fbf9f7;
+  background: #fefefe;
   width: 100%;
 /*  padding-left: 40px;
   padding-right: 67px;
@@ -114,7 +116,7 @@ ul {
 }
 .map {
   top: 0px;
-  background: #fbf9f7;
+  background: #fefefe;
   display: inline-block;
 /*  padding: 175px;
   padding-bottom: 249px;
@@ -126,6 +128,9 @@ ul {
 h3 {
   transform: scale(5);
   font-weight: 100;
+}
+h2 {
+  color: blue;
 }
 .clearfix{
     clear:both
@@ -143,7 +148,7 @@ h3 {
     margin-top: 0px;
 }
 .seeMore {
-    background: #f8f5f1;
+    background: #fff;
     float: left;
     box-shadow: 0 1px 2px rgba(0,0,0,.1);
     margin-top: 0px;

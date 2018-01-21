@@ -109,7 +109,7 @@ class Profile extends React.Component {
     return (
     <MuiThemeProvider>
   <div>
-  <AppBar title={<span style={{backgroundColor: '#f47023'}}>MINGLR</span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
+  <AppBar title={<span style={{backgroundColor: '#f47023'}}><img src='../minglr.gif'/></span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
   <FlatButton primary={true}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>
   <FlatButton ><Link to={{pathname:'/create'}}>Create event</Link></FlatButton>
   <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>

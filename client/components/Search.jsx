@@ -105,8 +105,6 @@ class Search extends React.Component {
           <DropDownMenu
             value={this.state.radiusItem}
             onChange={this.handleRadiusChange}
-            // style={st  yles.customWidth}
-            // openImmediately={true}
             autoWidth={true}
           >
             <MenuItem primaryText="Distance" value={1} key={-1}/>
@@ -118,7 +116,6 @@ class Search extends React.Component {
         </div>
         <span className="calendar">
           <DatePicker
-            style={{color: 'red'}}
             onChange={this.handleDateChange}
             value={this.state.startDate}
             hintText="Look By Date"
