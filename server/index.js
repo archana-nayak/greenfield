@@ -9,7 +9,6 @@ const Promise = require('bluebird');
 const Model = require('../model2.js');
 const User = Model.User;
 const request = require('request');
-const Filepicker = require('filepicker');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const fs = require('fs');

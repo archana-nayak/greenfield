@@ -14,6 +14,8 @@ import moment from 'moment';
 import MapContainer from '../components/MapContainer.jsx';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/flatbutton';
+import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {BrowserRouter, Router, Route, browserHistory, Switch, IndexRoute} from 'react-router-dom';
 const path = require('path');
@@ -139,7 +141,6 @@ class SecondPage extends React.Component {
          console.log('an error is happen');
        }
      }).done((data) => {
-       console.log('done');
        var meetups = data.meetups;
        meetups = JSON.parse(meetups);
        var categories = data.categories;
@@ -166,7 +167,6 @@ class SecondPage extends React.Component {
     })
     .done((data) => {
       var meetups = data.meetups;
-      console.log(JSON.parse(meetups));
       meetups = JSON.parse(meetups).results;
       this.setState({events: meetups});
     });
@@ -177,13 +177,12 @@ class SecondPage extends React.Component {
       <MuiThemeProvider>
       <div>
       <div>
-      <h1 style={{display: 'flex'}}>
-      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What is going on tonight?</text>
-      <Link to={{pathname:'/home'}}>Home</Link>
-      <Link className="btn" to={{pathname:'/create'}}>Create event</Link>
-      <Link className="btn" to={{pathname:'/logout'}}>Logout</Link>
-      <div className="btn" to={{pathname:'/profile'}} onClick={this.onProfileClick}>{this.state.profile.username}s profile</div>
-      </h1>
+      <AppBar title={<span style={{backgroundColor: '#f47023'}}><img src='../minglr.gif'/></span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
+      <FlatButton primary={true}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>
+      <FlatButton ><Link to={{pathname:'/create'}}>Create Event</Link></FlatButton>
+      <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
+      <FlatButton ><Link to={{pathname:'/profile'}}>Profile</Link></FlatButton>
+      </AppBar>
       </div>
       {this.state.displayCard ? <ProfileCard profile={this.state.profile}/> : null}
       <div className="askForZipCode">{this.state.zipcodeAsker}</div>

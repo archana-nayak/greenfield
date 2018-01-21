@@ -8,6 +8,9 @@ import CreatedList from './CreatedList.jsx';
 import $ from 'jquery';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/flatbutton';
+import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class Profile extends React.Component {
   constructor(props) {
@@ -106,12 +109,12 @@ class Profile extends React.Component {
     return (
     <MuiThemeProvider>
   <div>
-  <h1 style={{display: 'flex'}}>
-  <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What is going on tonight?</text>
-  <Link className="btn" to={{pathname:'/home'}}>Home</Link>
-  <Link className="btn" to={{pathname:'/logout'}}>Logout</Link>
-  <Link className="btn" to={{pathname:'/profile'}}>{this.state.profile.username}'s profile</Link>
-  </h1>
+  <AppBar title={<span style={{backgroundColor: '#f47023'}}><img src='../minglr.gif'/></span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
+  <FlatButton primary={true}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>
+  <FlatButton ><Link to={{pathname:'/create'}}>Create event</Link></FlatButton>
+  <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
+  <FlatButton ><div to={{pathname:'/profile'}} onClick={this.onProfileClick}>Profile</div></FlatButton>
+  </AppBar>
   <div className="profile">
   <img src="http://www.telegraph.co.uk/content/dam/men/2016/05/24/Untitled-1_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpg?imwidth=450" alt="John" style={{'margin': '0 auto', 'width':'150px', 'height': '100px'}}/>
   <p className="title">{this.state.profile.username}</p>

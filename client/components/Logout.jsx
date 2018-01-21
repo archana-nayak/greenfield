@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import FlatButton from 'material-ui/flatbutton';
+import AppBar from 'material-ui/AppBar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 class Logout extends React.Component {
   constructor(props) {
     super(props);
@@ -24,15 +27,17 @@ class Logout extends React.Component {
   }
   render() {
     return (
+      <MuiThemeProvider>
       <div>
-      <h1 style={{display: 'flex'}}>
-      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>What's going on tonight</text>
-      <Link className="btn" to={{pathname:'/'}}>Home</Link>
-      <Link className="btn" to={{pathname:'/login'}}>Login</Link>
-      <Link className="btn" to={{pathname:'/signup'}}>Signup</Link>
-      </h1>
-      <div style={{textAlign: 'center', fontSize: '40px', textDecoration: 'underline'}}><Link to={{pathname: '/'}}>TAKE ME HOME</Link></div>
+      <AppBar title={<span style={{backgroundColor: '#f47023'}}><img src='../minglr.gif'/></span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
+      <FlatButton primary={true}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>
+      <FlatButton ><Link to={{pathname:'/create'}}>Create event</Link></FlatButton>
+      <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
+      <FlatButton ><div to={{pathname:'/profile'}} onClick={this.onProfileClick}>Profile</div></FlatButton>
+      </AppBar>
+      <h2 style={{textAlign: 'center', color: 'black'}}><Link to={{pathname: '/login'}}>TAKE ME HOME</Link></h2>
       </div>
+      </MuiThemeProvider>
     );
   }
 }
